@@ -30,7 +30,7 @@ class SaleOrderLine(models.Model):
             })
 
     def _prepare_agents_vals(self, vals=None):
-        res = super()._prepare_agents_vals(vals=vals)
+        res = super(SaleOrderLine, self)._prepare_agents_vals(vals=vals)
         commission = self._get_commission_from_pricelist() if self else False
         if commission:
             for vals in res:
