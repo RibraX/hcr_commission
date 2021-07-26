@@ -73,8 +73,8 @@
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date"/>
-                            <field name="invoice"/>
                             <field name="customer_id"/>
+                            <field name="invoice"/>
                             <field name="commission"/>
                             <field name="settled_amount"/>
                         </tree>
