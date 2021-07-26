@@ -39,7 +39,7 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True
     )    
-    customer_id = fields.Many2one('res.partner', 'Partner', readonly=True)    
+    customer_id = fields.Many2one('res.partner', 'Customer', readonly=True)    
     
 
     @api.depends('lines', 'lines.settled_amount')
@@ -96,8 +96,8 @@ class Settlement(models.Model):
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
-        invoice_line = self.env['res.partner'].new({
-             'customer_id': partner.id,
+        invoice_line = self.env['account.invoice'].new({
+             'customer_id': partner_id,
         })
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
