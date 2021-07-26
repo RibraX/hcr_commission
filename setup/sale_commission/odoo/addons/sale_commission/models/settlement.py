@@ -38,9 +38,7 @@ class Settlement(models.Model):
         comodel_name='res.company',
         default=lambda self: self.env.user.company_id,
         required=True
-    )    
-    customer_id = fields.Many2one('res.partner', 'Partner', readonly=True)    
-    
+    )
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -89,16 +87,13 @@ class Settlement(models.Model):
         invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
-    def _prepare_invoice_line(self, settlement, invoice, product, quantity):
+    def _prepare_invoice_line(self, settlement, invoice, product):
         invoice_line = self.env['account.invoice.line'].new({
             'invoice_id': invoice.id,
             'product_id': product.id,
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
-        invoice_line = self.env['res.partner'].new({
-             'customer_id': partner.id,
-        })
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
         # Put commission fee
@@ -117,7 +112,7 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement, customer):
+    def _add_extra_invoice_lines(self, settlement):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
@@ -174,7 +169,6 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    customer_id = fields.Many2one('res.partner', 'Partner', readonly=True)    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
