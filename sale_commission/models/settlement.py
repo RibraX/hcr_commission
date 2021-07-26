@@ -39,7 +39,7 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True
     )    
-    customer_id = fields.Many2one('res.partner', 'Partner', readonly=True)    
+    customer = fields.Many2one('res.partner', 'Partner', readonly=True)    
     
 
     @api.depends('lines', 'lines.settled_amount')
