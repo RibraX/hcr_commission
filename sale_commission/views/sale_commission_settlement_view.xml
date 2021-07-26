@@ -74,7 +74,6 @@
                         <tree string="Settlement lines">
                             <field name="date"/>
                             <field name="invoice"/>
-                            <field name="customer"/>
                             <field name="commission"/>
                             <field name="settled_amount"/>
                         </tree>
