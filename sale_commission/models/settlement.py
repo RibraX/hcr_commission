@@ -39,7 +39,11 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True
     )    
-    customer_id = fields.Many2one('res.partner', 'Customer', readonly=True)    
+    partner_id = fields.Many2one(
+        comodel_name='res.partner', 
+        default=lambda self: self.env.user.partner_id,
+        required=True
+    )    
     
 
     @api.depends('lines', 'lines.settled_amount')
