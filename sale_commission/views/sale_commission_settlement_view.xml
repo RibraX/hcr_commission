@@ -73,7 +73,7 @@
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date"/>
-                            <!-- <filter string="Customer" name="Customer" context="{'group_by':'partner_id'}"/> -->
+                            <field string="Customer" name="Customer" context="{'group_by':'partner_id'}"/>
                             <field name="invoice"/>
                             <field name="commission"/>
                             <field name="settled_amount"/>
