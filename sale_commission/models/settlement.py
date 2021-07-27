@@ -39,10 +39,8 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True
     )    
-    partner_id = fields.Many2one(
-        comodel_name='res.partner', 
-        default=lambda self: self.env.user.partner_id,
-        required=True
+    customer = fields.Many2one(
+        comodel_name="res.partner", domain="[('customer', '=', True)]")
     )    
     
 
@@ -101,7 +99,7 @@ class Settlement(models.Model):
         })
         # Get other invoice line values from product onchange
         invoice_line = self.env['account.invoice'].new({
-             'customer_id': partner.id,
+             'partner_id': partner.id,
         })
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
@@ -121,7 +119,7 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement, customer):
+    def _add_extra_invoice_lines(self, settlement):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
