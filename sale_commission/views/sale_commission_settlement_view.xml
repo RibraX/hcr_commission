@@ -73,7 +73,7 @@
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date"/>
-                            <field name="partner_id" string="Customer"/>
+                            <field name="partner_id"/>
                             <field name="invoice"/>
                             <field name="commission"/>
                             <field name="settled_amount"/>
