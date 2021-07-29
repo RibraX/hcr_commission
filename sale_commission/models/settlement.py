@@ -40,7 +40,8 @@ class Settlement(models.Model):
         required=True
     )      
     partner_id = fields.Many2one(
-        comodel_name='res.partner'
+        comodel_name='account.invoice.report.partner_id', 
+        domain="[('state', '=', 'invoiced')]"
     )       
 
     @api.depends('lines', 'lines.settled_amount')
