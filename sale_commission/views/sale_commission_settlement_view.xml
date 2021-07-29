@@ -59,11 +59,11 @@
                 <group>
                     <group>
                         <field name="agent"/>
-                        <field name="date_from"/>
                         <field name="invoice" attrs="{'invisible': [('state', '!=', 'invoiced')]}"/>
                     </group>
                     <group>
                         <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="date_from"/>
                         <field name="date_to"/>
                         <field name="currency_id" invisible="1"/>
                         <field name="agent_type" invisible="1"/>
@@ -73,7 +73,7 @@
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date"/>
-                            <field string="Customer" name="customer_id" context="{'group_by':'partner_id'}"/>
+                            <field name="customer" string="Customer"/>
                             <field name="invoice"/>
                             <field name="commission"/>
                             <field name="settled_amount"/>
