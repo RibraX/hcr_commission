@@ -39,9 +39,7 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True
     )      
-    partner_id = fields.Many2one(
-        comodel_name='res.partner_id', readonly=True
-    )       
+    partner_id = fields.Many2one('res_partner', string='Customer')       
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -175,7 +173,7 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    partner_id = fields.Many2one('res_partner', string="Partner",
+    partner_id = fields.Many2one('res_partner.id', string="Partner",
         related='account_invoice_report.partner_id'))    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
