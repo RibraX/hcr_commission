@@ -40,7 +40,7 @@ class Settlement(models.Model):
         required=True
     )      
     partner = fields.Many2one(
-        comodel_name='res.partner', string='Customer', readonly=True)       
+        comodel_name='res.partner', string='Partner', readonly=True)       
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -174,7 +174,8 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    partner = fields.Many2one('res_partner.name', string="Customer",
+    partner = fields.Many2one(
+        comodel_name='res_partner', string="Customer",
         related='account_invoice_report.partner_id'))    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
