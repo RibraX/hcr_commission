@@ -40,7 +40,7 @@ class Settlement(models.Model):
         required=True
     )      
     partner = fields.Many2one(
-        comodel_name='res.partner', string='Customer')       
+        comodel_name='res.partner', string='Customer', readonly=True)       
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
