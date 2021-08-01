@@ -5,8 +5,9 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree string="Settlements"
-                  colors="red: state == 'settled'; green: state == 'invoiced'"
-                  create="false">
+                    decoration-success = "state == 'invoiced'"
+                    decoration-danger = "state == 'settled'"
+                    create="false">
                 <field name="agent"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="date_from"/>
