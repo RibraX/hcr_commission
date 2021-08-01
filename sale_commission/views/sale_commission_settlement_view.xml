@@ -5,7 +5,7 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree string="Settlements"
-                  colors="red: state == 'cancel'; gray: state == 'invoiced'"
+                  colors="red: state == 'settled'; green: state == 'invoiced'"
                   create="false">
                 <field name="agent"/>
                 <field name="company_id" groups="base.group_multi_company"/>
