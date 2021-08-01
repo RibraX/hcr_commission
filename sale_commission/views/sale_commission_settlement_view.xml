@@ -98,7 +98,7 @@
             <tree string="Settlement lines" create="false">
                 <field name="date"/>
                 <field name="agent"/>
-                <field name="customer"/>
+                <!-- <field name="customer"/> -->
                 <field name="invoice"/>
                 <field name="invoice_line"/>
                 <field name="commission"/>
