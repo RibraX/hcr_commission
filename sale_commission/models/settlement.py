@@ -89,16 +89,14 @@ class Settlement(models.Model):
         invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
-    def _prepare_invoice_line(self, settlement, invoice, product):
+    def _prepare_invoice_line(self, settlement, invoice, product, quantity):
         invoice_line = self.env['account.invoice.line'].new({
             'invoice_id': invoice.id,
             'product_id': product.id,
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
-        invoice_line = self.env['account.invoice.report'].new({
-             'customer': partner.id,
-        })
+       
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
         # Put commission fee
@@ -117,11 +115,14 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement):
+    def _add_extra_invoice_lines(self, settlement, customer):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
+         invoice_line = self.env['account.invoice.report'].new({
+             'customer': partner.id,
+        })
         return []
 
     def create_invoice_header(self, journal, date):
@@ -176,7 +177,7 @@ class SettlementLine(models.Model):
         related='invoice_line.invoice_id')
     customer = fields.Many2one(
         comodel_name='res.partner', string="Customer",
-        related='invoice_line.customer_id'))    
+        related='invoice_line.customer'))    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
