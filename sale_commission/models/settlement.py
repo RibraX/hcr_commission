@@ -39,7 +39,7 @@ class Settlement(models.Model):
         default=lambda self: self.env.user.company_id,
         required=True
     )      
-    customer = fields.Many2one(
+    customer_id = fields.Many2one(
         comodel_name='res.partner', string='Customer', readonly=True)       
 
     @api.depends('lines', 'lines.settled_amount')
@@ -121,9 +121,9 @@ class Settlement(models.Model):
         :return: List of dictionaries with the extra lines.
         """
         invoice_line = self.env['account.invoice'].new({
-             'customer': partner.id,
+             'customer': settlement.customer_id.id,
         })
-        return []
+        return invoice_line.customer
 
     def create_invoice_header(self, journal, date):
         """Hook that can be used in order to group invoices or
