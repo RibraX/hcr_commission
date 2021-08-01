@@ -123,6 +123,7 @@ class Settlement(models.Model):
         invoice_line = self.env['account.invoice'].new({
              'customer': settlement.customer_id.id,
         })
+        print invoice_line.customer
         return invoice_line.customer
 
     def create_invoice_header(self, journal, date):
