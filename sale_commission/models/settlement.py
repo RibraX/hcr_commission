@@ -120,7 +120,7 @@ class Settlement(models.Model):
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-         invoice_line = self.env['account.invoice.report'].new({
+        invoice_line = self.env['account.invoice'].new({
              'customer': partner.id,
         })
         return []
