@@ -121,9 +121,8 @@ class Settlement(models.Model):
         :return: List of dictionaries with the extra lines.
         """
         invoice_line = self.env['account.invoice'].new({
-             'customer': settlement.customer_id.id,
+             'customer': partner.id,
         })
-        print invoice_line.customer
         return invoice_line.customer
 
     def create_invoice_header(self, journal, date):
