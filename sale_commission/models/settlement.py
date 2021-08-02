@@ -252,7 +252,7 @@ class SettlementLine(models.Model):
         related='invoice_line.invoice_id')
     partner = fields.Many2one('res.partner', string='Partner',
         related = (account_invoice.partner),
-        inverse_name= 'res_partner_id'
+        inverse_name= 'res_partner_id',
         domain = [('invoice_line.invoice_id','=','account_invoice.invoice_id')]
         )
     agent = fields.Many2one(
