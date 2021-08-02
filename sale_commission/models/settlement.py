@@ -250,7 +250,10 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    partner_id = fields.Many2one('res.partner', string='Partner')
+    partner_id = fields.Many2one('res.partner', string='Partner',
+        related = (account_invoice.partner_id),
+        domain = [('invoice_line.invoice_id','=','account_invoice.invoice_id')]
+        )
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
