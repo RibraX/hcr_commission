@@ -83,7 +83,12 @@ class AccountInvoiceLine(models.Model):
     any_settled = fields.Boolean(
         compute="_compute_any_settled",
     )
-
+    partner = fields.One2many(
+        string="Field name",
+        comodel_name="res.partner",
+        inverse_name="res_partner_id",
+        help="Explain your field.",
+    )
     @api.model
     def _default_agents(self):
         """Don't populate agents for supplier invoices."""
