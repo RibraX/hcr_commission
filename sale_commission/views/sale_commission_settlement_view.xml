@@ -5,9 +5,8 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree string="Settlements"
-                    decoration-success = "state == 'invoiced'"
-                    decoration-danger = "state == 'settled'"
-                    create="false">
+                  colors="red: state == 'cancel'; gray: state == 'invoiced'"
+                  create="false">
                 <field name="agent"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="date_from"/>
@@ -60,11 +59,11 @@
                 <group>
                     <group>
                         <field name="agent"/>
+                        <field name="date_from"/>
                         <field name="invoice" attrs="{'invisible': [('state', '!=', 'invoiced')]}"/>
                     </group>
                     <group>
                         <field name="company_id" groups="base.group_multi_company"/>
-                        <field name="date_from"/>
                         <field name="date_to"/>
                         <field name="currency_id" invisible="1"/>
                         <field name="agent_type" invisible="1"/>
@@ -74,7 +73,6 @@
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date"/>
-                            <!-- <field name="customer"/> -->
                             <field name="invoice"/>
                             <field name="invoice_line"/>
                             <field name="commission"/>
@@ -99,7 +97,6 @@
             <tree string="Settlement lines" create="false">
                 <field name="date"/>
                 <field name="agent"/>
-                <!-- <field name="customer"/> -->
                 <field name="invoice"/>
                 <field name="invoice_line"/>
                 <field name="commission"/>

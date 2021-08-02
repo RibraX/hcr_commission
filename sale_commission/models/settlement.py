@@ -38,9 +38,7 @@ class Settlement(models.Model):
         comodel_name='res.company',
         default=lambda self: self.env.user.company_id,
         required=True
-    )      
-    customer_id = fields.Many2one(
-        comodel_name='res.partner', string='Customer', readonly=True)       
+    )
 
     @api.depends('lines', 'lines.settled_amount')
     def _compute_total(self):
@@ -96,7 +94,6 @@ class Settlement(models.Model):
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
-       
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
         # Put commission fee
@@ -115,15 +112,12 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement, customer):
+    def _add_extra_invoice_lines(self, settlement):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-        invoice_line = self.env['account.invoice'].new({
-             'customer': partner.id,
-        })
-        return invoice_line.customer
+        return []
 
     def create_invoice_header(self, journal, date):
         """Hook that can be used in order to group invoices or
@@ -175,9 +169,6 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    customer = fields.Many2one(
-        comodel_name='res.partner', string="Customer",
-        related='invoice_line.customer'))    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
