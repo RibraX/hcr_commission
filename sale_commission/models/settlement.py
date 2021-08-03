@@ -261,7 +261,7 @@ class SettlementLine(models.Model):
     )
     origin = fields.Char(string='Origin',
         store=True,
-        related='invoice_line.origin'
+        related='invoice_line.origin',
         help="Reference of the document that produced this invoice.",
         readonly=True)
     agent = fields.Many2one(
