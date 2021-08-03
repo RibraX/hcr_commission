@@ -102,8 +102,9 @@ class AccountInvoiceLine(models.Model):
         # We use this form as this is the way it's returned when no real vals
         agents_vals = vals.get('agents', [(6, 0, [])])
         invoice_id = vals.get('invoice_id', False)
+        origin = vals.get('origin', False)
         if (agents_vals and agents_vals[0][0] == 6 and not
-                agents_vals[0][2] and invoice_id):
+                agents_vals[0][2] and invoice_id and origin):
             vals['agents'] = self._prepare_agents_vals(vals=vals)
         return super().create(vals)
 
@@ -130,6 +131,12 @@ class AccountInvoiceLineAgent(models.Model):
         string="Invoice",
         comodel_name="account.invoice",
         related="object_id.invoice_id",
+        store=True,
+    )
+    origin = fields.Many2one(
+        string="Origin",
+        comodel_name="invoice.origin",
+        related="object_id.origin_id",
         store=True,
     )
     invoice_date = fields.Date(

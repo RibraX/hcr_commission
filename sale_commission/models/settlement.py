@@ -259,8 +259,8 @@ class SettlementLine(models.Model):
         ondelete="set null",
         help="Explain your field.",
     )
-    origin = fields.Char(string='Source Document',
-        comodel_name='account.invoice.line', store=True,
+    origin = fields.Char(string='Origin',
+        store=True,
         related='invoice_line.origin'
         help="Reference of the document that produced this invoice.",
         readonly=True)
