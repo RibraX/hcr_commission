@@ -260,6 +260,8 @@ class SettlementLine(models.Model):
         help="Explain your field.",
     )
     origin = fields.Char(string='Source Document',
+        comodel_name='account.invoice.line', store=True,
+        related='invoice_line.origin'
         help="Reference of the document that produced this invoice.",
         readonly=True)
     agent = fields.Many2one(
