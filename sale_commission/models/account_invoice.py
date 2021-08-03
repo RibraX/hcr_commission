@@ -136,7 +136,7 @@ class AccountInvoiceLineAgent(models.Model):
     origin = fields.Many2one(
         string="Origin",
         comodel_name="invoice.origin",
-        related="object_id.origin_id",
+        related="object_id.origin",
         store=True,
     )
     invoice_date = fields.Date(
