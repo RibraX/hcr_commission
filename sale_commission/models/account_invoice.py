@@ -22,7 +22,7 @@ class AccountInvoice(models.Model):
     agent_ids = fields.Many2many(
         "res.partner", string="Agents", compute="_compute_agents",
         search="_search_agents")
-
+    
     @api.multi
     def _compute_agents(self):
         for so in self:
