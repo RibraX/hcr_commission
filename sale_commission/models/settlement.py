@@ -16,7 +16,7 @@ class Settlement(models.Model):
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
-    agent_id = fields.Many2one(
+    agent = fields.Many2one(
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     lines = fields.One2many(
@@ -101,10 +101,6 @@ class Settlement(models.Model):
             invoice_line_vals['price_unit'] = -settlement.total
         else:
             invoice_line_vals['price_unit'] = settlement.total
-        # Get Sale Order Number
-        invoice_line = self.env['account.invoice'].new({
-            'origin': origin.id,
-        })
         # Put period string
         lang = self.env['res.lang'].search(
             [('code', '=', invoice.partner_id.lang or
@@ -153,7 +149,8 @@ class Settlement(models.Model):
         for settlement in self:
             if settlement.invoice.amount_total < 0:
                 raise UserError(_('Value cannot be negative'))
-         
+
+
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
     _description = "Line of a commission settlement"
@@ -172,11 +169,6 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    origin = fields.Char(string='Origin',
-        store=True,
-        related='invoice_line.origin',
-        help="Reference of the document that produced this invoice.",
-        readonly=True)
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)

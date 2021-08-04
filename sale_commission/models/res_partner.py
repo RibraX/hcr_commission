@@ -35,6 +35,7 @@ class ResPartner(models.Model):
         comodel_name="sale.commission.settlement", inverse_name="agent",
         readonly=True)
 
+
     @api.onchange('agent_type')
     def onchange_agent_type(self):
         if self.agent_type == 'agent' and self.agent:
