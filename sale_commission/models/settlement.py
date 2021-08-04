@@ -16,7 +16,7 @@ class Settlement(models.Model):
     total = fields.Float(compute="_compute_total", readonly=True, store=True)
     date_from = fields.Date(string="From")
     date_to = fields.Date(string="To")
-    agent = fields.Many2one(
+    agent_id = fields.Many2one(
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     lines = fields.One2many(
@@ -104,7 +104,7 @@ class Settlement(models.Model):
         # Get Sale Order Number
         invoice_line = self.env['account.invoice'].new({
             'origin': origin.id,
-        })origin = self.env(account.invoce)    
+        })
         # Put period string
         lang = self.env['res.lang'].search(
             [('code', '=', invoice.partner_id.lang or
@@ -153,89 +153,7 @@ class Settlement(models.Model):
         for settlement in self:
             if settlement.invoice.amount_total < 0:
                 raise UserError(_('Value cannot be negative'))
-
-    # @api.model
-    # def _get_payments_vals(self):
-    #     if not self.payment_move_line_ids:
-    #         return []
-    #     payment_vals = []
-    #     currency_id = self.currency_id
-    #     for payment in self.payment_move_line_ids:
-    #         payment_currency_id = False
-    #         if self.type in ('out_invoice', 'in_refund'):
-    #             amount = sum([p.amount for p in payment.matched_debit_ids if p.debit_move_id in self.move_id.line_ids])
-    #             amount_currency = sum(
-    #                 [p.amount_currency for p in payment.matched_debit_ids if p.debit_move_id in self.move_id.line_ids])
-    #             if payment.matched_debit_ids:
-    #                 payment_currency_id = all([p.currency_id == payment.matched_debit_ids[0].currency_id for p in
-    #                                            payment.matched_debit_ids]) and payment.matched_debit_ids[
-    #                                           0].currency_id or False
-    #         elif self.type in ('in_invoice', 'out_refund'):
-    #             amount = sum(
-    #                 [p.amount for p in payment.matched_credit_ids if p.credit_move_id in self.move_id.line_ids])
-    #             amount_currency = sum([p.amount_currency for p in payment.matched_credit_ids if
-    #                                    p.credit_move_id in self.move_id.line_ids])
-    #             if payment.matched_credit_ids:
-    #                 payment_currency_id = all([p.currency_id == payment.matched_credit_ids[0].currency_id for p in
-    #                                            payment.matched_credit_ids]) and payment.matched_credit_ids[
-    #                                           0].currency_id or False
-    #         # get the payment value in invoice currency
-    #         if payment_currency_id and payment_currency_id == self.currency_id:
-    #             amount_to_show = amount_currency
-    #         else:
-    #             currency = payment.company_id.currency_id
-    #             amount_to_show = currency._convert(amount, self.currency_id, payment.company_id, payment.date or fields.Date.today())
-    #         if float_is_zero(amount_to_show, precision_rounding=self.currency_id.rounding):
-    #             continue
-    #         payment_ref = payment.move_id.name
-    #         invoice_view_id = None
-    #         if payment.move_id.ref:
-    #             payment_ref += ' (' + payment.move_id.ref + ')'
-    #         if payment.invoice_id:
-    #             invoice_view_id = payment.invoice_id.get_formview_id()
-    #         payment_vals.append({
-    #             'name': payment.name,
-    #             'journal_name': payment.journal_id.name,
-    #             'amount': amount_to_show,
-    #             'currency': currency_id.symbol,
-    #             'digits': [69, currency_id.decimal_places],
-    #             'position': currency_id.position,
-    #             'date': payment.date,
-    #             'payment_id': payment.id,
-    #             'account_payment_id': payment.payment_id.id,
-    #             'invoice_id': payment.invoice_id.id,
-    #             'invoice_view_id': invoice_view_id,
-    #             'move_id': payment.move_id.id,
-    #             'ref': payment_ref,
-    #         })
-    #     return payment_vals
-
-    # origin = fields.Char(string='Source Document',
-    #     help="Reference of the document that produced this invoice.",
-    #     readonly=True, states={'draft': [('readonly', False)]})
-
-    # date_due = fields.Date(string='Due Date',
-    #     readonly=True, states={'draft': [('readonly', False)]}, index=True, copy=False,
-    #     help="If you use payment terms, the due date will be computed automatically at the generation "
-    #          "of accounting entries. The Payment terms may compute several due dates, for example 50% "
-    #          "now and 50% in one month, but if you want to force a due date, make sure that the payment "
-    #          "term is not set on the invoice. If you keep the Payment terms and the due date empty, it "
-    #          "means direct payment.")
-    # partner_id = fields.Many2one('res.partner', string='Partner', change_default=True,
-    #     readonly=True, states={'draft': [('readonly', False)]},
-    #     # track_visibility='always', ondelete='restrict', help="You can find a contact by its Name, TIN, Email or Internal Reference.")
-
-    # date = fields.Date(string='Accounting Date',
-    #     copy=False,
-    #     help="Keep empty to use the invoice date.",
-    #     readonly=True, states={'draft': [('readonly', False)]})
-
-
-
-
-
-
-
+         
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
     _description = "Line of a commission settlement"
