@@ -87,7 +87,7 @@ class Settlement(models.Model):
         invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
-    def _prepare_invoice_line(self, settlement, invoice, product):
+    def _prepare_invoice_line(self, settlement, invoice, product, origin):
         invoice_line = self.env['account.invoice.line'].new({
             'invoice_id': invoice.id,
             'product_id': product.id,
@@ -172,9 +172,9 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    # origin = fields.Many2one(comodel_name='account.invoice',
-    #     related='invoice_line.origin.id', store=True, string="Origin",
-    #     )    
+    origin = fields.Many2one(comodel_name='account.invoice',
+         related='invoice_line.origin.id', store=True, string="Origin",
+         )    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
