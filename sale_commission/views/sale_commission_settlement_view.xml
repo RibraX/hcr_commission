@@ -74,7 +74,7 @@
                         <tree string="Settlement lines">
                             <field name="date"/>
                             <!-- <field name="partner_id"/> -->
-                            <field name="origin"/>
+                            <!-- <field name="origin"/> -->
                             <field name="invoice"/>
                             <field name="invoice_line"/>
                             <field name="commission"/>
