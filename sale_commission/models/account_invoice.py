@@ -84,13 +84,6 @@ class AccountInvoiceLine(models.Model):
         compute="_compute_any_settled",
     )
 
-   origin = fields.Many2one(
-        string="Origin",
-        comodel_name="account.invoice.line.origin",
-        related="object_id.origin",
-        store=True,
-        )
-
     @api.model
     def _default_agents(self):
         """Don't populate agents for supplier invoices."""
