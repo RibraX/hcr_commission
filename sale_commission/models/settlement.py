@@ -113,7 +113,7 @@ class Settlement(models.Model):
               self.env.context.get('lang', 'en_US'))])
         date_from = fields.Date.from_string(settlement.date_from)
         date_to = fields.Date.from_string(settlement.date_to)
-        invoice_line_vals['name'] += "\n" + _('Period: from %s to %s') % (
+        invoice_line_vals['origin'] += "\n" + _('Period: from %s to %s') % (
             date_from.strftime(lang.date_format),
             date_to.strftime(lang.date_format))
         return invoice_line_vals
