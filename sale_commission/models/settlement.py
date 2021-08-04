@@ -87,10 +87,9 @@ class Settlement(models.Model):
         invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
-    def _prepare_invoice_line(self, settlement, invoice, origin, product):
+    def _prepare_invoice_line(self, settlement, invoice, product):
         invoice_line = self.env['account.invoice.line'].new({
             'invoice_id': invoice.id,
-            'origin': origin.id,
             'product_id': product.id,
             'quantity': 1,
         })
@@ -102,6 +101,10 @@ class Settlement(models.Model):
             invoice_line_vals['price_unit'] = -settlement.total
         else:
             invoice_line_vals['price_unit'] = settlement.total
+        # Get Sale Order Number
+        invoice_line = self.env['account.invoice'].new({
+            'origin': origin.id,
+        })origin = self.env(account.invoce)    
         # Put period string
         lang = self.env['res.lang'].search(
             [('code', '=', invoice.partner_id.lang or
@@ -251,14 +254,14 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    partner_id = fields.Many2one("res.partner",
-        string="Partner",
-        # comodel_name="res.partner",
-        domain="[('invoice_line', '=', other)]",
-        # context={"key": "value"},
-        # ondelete="set null",
-        # help="Explain your field.",
-    )
+    # partner_id = fields.Many2one("res.partner",
+    #     string="Partner",
+    #     # comodel_name="res.partner",
+    #     domain="[('invoice_line', '=', other)]",
+    #     # context={"key": "value"},
+    #     # ondelete="set null",
+    #     # help="Explain your field.",
+    # )
     origin = fields.Char(string='Origin',
         store=True,
         related='invoice_line.origin',
@@ -280,6 +283,13 @@ class SettlementLine(models.Model):
         comodel_name='res.company',
         related='settlement.company_id',
     )
+
+    def _search_customer(self, settlement, partner, date=False):
+        partner = self.env['account.invoice'].new({
+            'partner_id': partner.id,
+            })
+
+    oo_
 
     @api.constrains('settlement', 'agent_line')
     def _check_company(self):
