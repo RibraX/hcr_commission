@@ -92,7 +92,7 @@ class Settlement(models.Model):
 
     def _prepare_invoice_line(self, settlement, invoice, product, origin):
         invoice_line = self.env['account.invoice.line'].new({
-            'invoice_id': invoice.id,
+            'invoice_id': origin.id,
             'product_id': product.id,
             'quantity': 1,
         })
@@ -177,7 +177,7 @@ class SettlementLine(models.Model):
         related='invoice_line.invoice_id')
     origin = fields.Many2one(
         comodel_name="account.invoice", string="Origin", store=True,
-        related='account_invoice.origin')  
+        related='invoice_line.origin')  
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
