@@ -112,12 +112,15 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement):
+    def _add_extra_invoice_lines(self, settlement, origin):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-        return []
+        invoice_line = self.env['account.invoice'].new({
+            'origin': origin.id,
+        })
+        return invoice_line
 
     def create_invoice_header(self, journal, date):
         """Hook that can be used in order to group invoices or
@@ -169,6 +172,9 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
+    origin = fields.Many2one(
+        related='invoice_line.origin.id', store=True, string="Origin",
+        )    
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
