@@ -254,14 +254,6 @@ class SettlementLine(models.Model):
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
-    # partner_id = fields.Many2one("res.partner",
-    #     string="Partner",
-    #     # comodel_name="res.partner",
-    #     domain="[('invoice_line', '=', other)]",
-    #     # context={"key": "value"},
-    #     # ondelete="set null",
-    #     # help="Explain your field.",
-    # )
     origin = fields.Char(string='Origin',
         store=True,
         related='invoice_line.origin',
