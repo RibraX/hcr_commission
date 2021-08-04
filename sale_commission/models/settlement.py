@@ -284,13 +284,6 @@ class SettlementLine(models.Model):
         related='settlement.company_id',
     )
 
-    def _search_customer(self, settlement, partner, date=False):
-        partner = self.env['account.invoice'].new({
-            'partner_id': partner.id,
-            })
-
-    oo_
-
     @api.constrains('settlement', 'agent_line')
     def _check_company(self):
         for record in self:
