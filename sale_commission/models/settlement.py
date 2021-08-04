@@ -92,7 +92,7 @@ class Settlement(models.Model):
 
     def _prepare_invoice_line(self, settlement, invoice, product, origin):
         invoice_line = self.env['account.invoice.line'].new({
-            'invoice_id': origin.id,
+            'invoice_id': invoice.id,
             'product_id': product.id,
             'quantity': 1,
         })
@@ -118,7 +118,7 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement, origin):
+    def _add_extra_invoice_lines(self, settlement):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
