@@ -32,7 +32,7 @@ class Settlement(models.Model):
         comodel_name="account.invoice", string="Generated invoice",
         readonly=True)
     origin = fields.Many2one(
-        comodel_name="accounnt.invoice", string="Origin",
+        comodel_name="account.invoice", string="Origin",
         readonly=True)
     currency_id = fields.Many2one(
         comodel_name='res.currency', readonly=True,
@@ -98,7 +98,7 @@ class Settlement(models.Model):
         })
         # Get other invoice line values from product onchange
         invoice_line = self.env['account.invoice'].new({
-            'origin_id': origin.id,
+            'origin': origin.id,
         })
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
@@ -177,7 +177,7 @@ class SettlementLine(models.Model):
         related='invoice_line.invoice_id')
     origin = fields.Many2one(
         comodel_name="account.invoice", string="Origin", store=True,
-        related='account_invoice.origin')  
+        related='invoice_line.origin')  
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
