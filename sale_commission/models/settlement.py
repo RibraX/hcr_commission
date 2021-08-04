@@ -94,6 +94,9 @@ class Settlement(models.Model):
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
+        invoice_line = self.env['account.invoice'].new({
+            'origin': origin.id,
+        })
         invoice_line._onchange_product_id()
         invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)
         # Put commission fee
@@ -117,13 +120,7 @@ class Settlement(models.Model):
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-        invoice_line = self.env['account.invoice'].new({
-            'origin': origin.id,
-        })
-       # Get other invoice line values from product onchange
-        invoice_line._onchange_product_id()
-        invoice_line_vals = invoice_line._convert_to_write(invoice_line._cache)        
-        return invoice_line_vals
+        return []
 
     def create_invoice_header(self, journal, date):
         """Hook that can be used in order to group invoices or
