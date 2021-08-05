@@ -146,8 +146,8 @@ class Settlement(models.Model):
                 invoice_line_obj.create(invoice_line_vals)
             settlement.write({
                 'state': 'invoiced',
-                'invoice': invoice.id,
-                'origin': origin.id
+                'invoice': invoice.id
+                # 'origin': origin.id
             })
         if self.env.context.get('no_check_negative', False):
             return
