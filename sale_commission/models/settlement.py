@@ -113,7 +113,7 @@ class Settlement(models.Model):
               self.env.context.get('lang', 'en_US'))])
         date_from = fields.Date.from_string(settlement.date_from)
         date_to = fields.Date.from_string(settlement.date_to)
-        invoice_line_vals['origin'] += "\n" + _('Period: from %s to %s') % (
+        invoice_line_vals['name'] += "\n" + _('Period: from %s to %s') % (
             date_from.strftime(lang.date_format),
             date_to.strftime(lang.date_format))
         return invoice_line_vals
@@ -141,7 +141,7 @@ class Settlement(models.Model):
             extra_invoice_lines = self._add_extra_invoice_lines(settlement)
             invoice = settlement.create_invoice_header(journal, date)
             invoice_line_vals = self._prepare_invoice_line(
-                settlement, invoice, product)
+                settlement, invoice, product, origin)
             invoice_line_obj.create(invoice_line_vals)
             invoice.compute_taxes()
             for invoice_line_vals in extra_invoice_lines:
@@ -177,7 +177,7 @@ class SettlementLine(models.Model):
         related='invoice_line.invoice_id')
     origin = fields.Many2one(
         comodel_name="account.invoice", string="Origin", store=True,
-        related='invoice_line.invoice_id')  
+        related='invoice_line.origin')  
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
