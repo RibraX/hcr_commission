@@ -95,7 +95,7 @@ class Settlement(models.Model):
             'quantity': 1,
         })
         # Get other invoice line values from product onchange
-        invoice_line = self.env['account.invoice'].new({
+        invoice_line = self.env['account.invoice.line'].new({
             'origin': origin.id,
         })
         invoice_line._onchange_product_id()
