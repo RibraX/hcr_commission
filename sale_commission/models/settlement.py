@@ -139,7 +139,7 @@ class Settlement(models.Model):
             extra_invoice_lines = self._add_extra_invoice_lines(settlement)
             invoice = settlement.create_invoice_header(journal, date)
             invoice_line_vals = self._prepare_invoice_line(
-                settlement, invoice, product)
+                settlement, invoice, product, origin)
             invoice_line_obj.create(invoice_line_vals)
             invoice.compute_taxes()
             for invoice_line_vals in extra_invoice_lines:
