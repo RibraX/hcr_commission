@@ -31,7 +31,7 @@ class Settlement(models.Model):
     invoice = fields.Many2one(
         comodel_name="account.invoice", string="Generated invoice",
         readonly=True)
-    origin = fields.Char(string="Origin", related='account_invoice_line.origin')
+    origin = fields.Char(string="Origin")
     currency_id = fields.Many2one(
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
