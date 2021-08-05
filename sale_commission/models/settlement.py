@@ -88,7 +88,7 @@ class Settlement(models.Model):
         invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
-    def _prepare_invoice_line(self, settlement, invoice, product):
+    def _prepare_invoice_line(self, settlement, invoice, product, origin):
         invoice_line = self.env['account.invoice.line'].new({
             'invoice_id': invoice.id,
             'product_id': product.id,
@@ -131,7 +131,7 @@ class Settlement(models.Model):
         return self.env['account.invoice'].create(invoice_vals)
 
     @api.multi
-    def make_invoices(self, journal, product, date=False):
+    def make_invoices(self, journal, product, origin, date=False):
         invoice_line_obj = self.env['account.invoice.line']
         for settlement in self:
             # select the proper journal according to settlement's amount
@@ -147,7 +147,7 @@ class Settlement(models.Model):
             settlement.write({
                 'state': 'invoiced',
                 'invoice': invoice.id
-                # 'origin': origin.id
+                'origin': "Comissão"
             })
         if self.env.context.get('no_check_negative', False):
             return
