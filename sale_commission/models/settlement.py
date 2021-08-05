@@ -138,6 +138,7 @@ class Settlement(models.Model):
             # considering _add_extra_invoice_lines sum of values
             extra_invoice_lines = self._add_extra_invoice_lines(settlement)
             invoice = settlement.create_invoice_header(journal, date)
+            origin = "FATCOM"
             invoice_line_vals = self._prepare_invoice_line(
                 settlement, invoice, product, origin)
             invoice_line_obj.create(invoice_line_vals)
