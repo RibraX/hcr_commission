@@ -79,6 +79,7 @@
                             <!-- <field name="invoice_line"/> -->
                             <field name="commission"/>
                             <field name="settled_amount"/>
+                            <field name="commission_total"/>
                         </tree>
                     </field>
                 </group>
