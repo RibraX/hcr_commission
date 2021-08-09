@@ -31,7 +31,7 @@ class Settlement(models.Model):
     invoice = fields.Many2one(
         comodel_name="account.invoice", string="Generated invoice",
         readonly=True)
-    origin = fields.Char(string="Origin")
+    # origin = fields.Char(string="Origin")
     currency_id = fields.Many2one(
         comodel_name='res.currency', readonly=True,
         default=_default_currency)
@@ -119,10 +119,7 @@ class Settlement(models.Model):
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-        res = self.env['account.invoice.line'].new({
-            'origin': origin.id,
-            })
-        return res
+        return []
         
     def create_invoice_header(self, journal, date):
         """Hook that can be used in order to group invoices or
