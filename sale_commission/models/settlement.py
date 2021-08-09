@@ -120,7 +120,7 @@ class Settlement(models.Model):
         :return: List of dictionaries with the extra lines.
         """
         res = self.env['account.invoice.line'].new({
-            'origin': origin
+            'origin': origin,
         })
         return res
         
