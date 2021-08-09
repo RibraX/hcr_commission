@@ -132,7 +132,7 @@ class Settlement(models.Model):
         return self.env['account.invoice'].create(invoice_vals)
 
     @api.multi
-    def make_invoices(self, journal, product, origin, date=False):
+    def make_invoices(self, journal, product, date=False):
         invoice_line_obj = self.env['account.invoice.line']
         for settlement in self:
             # select the proper journal according to settlement's amount
