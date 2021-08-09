@@ -114,7 +114,7 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement):
+    def _add_extra_invoice_lines(self, settlement, origin):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
