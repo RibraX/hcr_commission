@@ -191,12 +191,12 @@ class SettlementLine(models.Model):
         related='settlement.company_id',
     )
 
-    @api.depends('agent_line.amount')
+    @api.depends('agent_line.commission')
     def _compute_commission_total(self):
         for record in self:
             record.commission_total = 0.0
             for line in record.agent_line:
-                record.commission_total += sum(x.amount for x in agent_line.amount)
+                record.commission_total += sum(x.amount for x in agente_line.commission)
 
     commission_total = fields.Float(
         string="Commissions",
