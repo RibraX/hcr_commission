@@ -52,7 +52,7 @@ class SaleCommissionMakeInvoice(models.TransientModel):
                 ('company_id', '=', self.journal.company_id.id)
             ])
         self.settlements.make_invoices(
-            self.journal, self.product, date=self.date)
+            self.journal, self.product, self.origin, date=self.date)
         # go to results
         if len(self.settlements):
             return {
