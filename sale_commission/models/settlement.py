@@ -119,7 +119,9 @@ class Settlement(models.Model):
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-        settlement = self.env['account.invoice.line.origin']
+        settlement = self.env['account.invoice.line'].new({
+            'origin': origin
+        })
         return settlement
         
     def create_invoice_header(self, journal, date):
