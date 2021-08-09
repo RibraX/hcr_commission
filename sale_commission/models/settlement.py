@@ -88,7 +88,7 @@ class Settlement(models.Model):
         invoice._onchange_journal_id()
         return invoice._convert_to_write(invoice._cache)
 
-    def _prepare_invoice_line(self, settlement, invoice, product, origin):
+    def _prepare_invoice_line(self, settlement, invoice, product):
         invoice_line = self.env['account.invoice.line'].new({
             'invoice_id': invoice.id,
             'product_id': product.id,
@@ -131,16 +131,15 @@ class Settlement(models.Model):
         return self.env['account.invoice'].create(invoice_vals)
 
     @api.multi
-    def make_invoices(self, journal, product, date=False):
+    def make_invoices(self, journal, product, origin, date=False):
         invoice_line_obj = self.env['account.invoice.line']
         for settlement in self:
             # select the proper journal according to settlement's amount
             # considering _add_extra_invoice_lines sum of values
             extra_invoice_lines = self._add_extra_invoice_lines(settlement)
             invoice = settlement.create_invoice_header(journal, date)
-            origin = "FATCOM"
             invoice_line_vals = self._prepare_invoice_line(
-                settlement, invoice, product, origin)
+                settlement, invoice, product)
             invoice_line_obj.create(invoice_line_vals)
             invoice.compute_taxes()
             for invoice_line_vals in extra_invoice_lines:
@@ -148,7 +147,6 @@ class Settlement(models.Model):
             settlement.write({
                 'state': 'invoiced',
                 'invoice': invoice.id,
-                'origin': origin
             })
         if self.env.context.get('no_check_negative', False):
             return
