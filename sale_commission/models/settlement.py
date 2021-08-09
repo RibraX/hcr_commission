@@ -121,7 +121,7 @@ class Settlement(models.Model):
         """
         res = self.env['account.invoice.line'].new({
             'origin': origin,
-        })
+            })
         return res
         
     def create_invoice_header(self, journal, date):
