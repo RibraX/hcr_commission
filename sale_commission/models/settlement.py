@@ -114,15 +114,13 @@ class Settlement(models.Model):
             date_to.strftime(lang.date_format))
         return invoice_line_vals
 
-    def _add_extra_invoice_lines(self, settlement, origin):
+    def _add_extra_invoice_lines(self, settlement):
         """Hook for adding extra invoice lines.
         :param settlement: Source settlement.
         :return: List of dictionaries with the extra lines.
         """
-        res = self.env['account.invoice.line'].new({
-            'origin': origin,
-        })
-        return res 
+        settlement = self.env['account.invoice.line.origin']
+        return settlement
         
     def create_invoice_header(self, journal, date):
         """Hook that can be used in order to group invoices or
