@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.lines" t-as="l">
+                                <tr t-foreach="o.lines" t-as="l" context="{'group_by':'customer'}">
                                     <td><span t-field="l.date"/></td>
                                     <td><span t-field="l.customer"/></td>
                                     <td><span t-field="l.origin"/></td>
