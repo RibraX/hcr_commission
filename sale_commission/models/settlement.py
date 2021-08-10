@@ -208,6 +208,7 @@ class SettlementLine(models.Model):
     #     store=True,
     #     )            
     commission_total = fields.Float(
+        comodel_name='account.invoice',
         string="Comissão Total", store=True,
         related='account_invoice.commission_total'
     )   
