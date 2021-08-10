@@ -195,23 +195,23 @@ class SettlementLine(models.Model):
         related='settlement.company_id',
     )
 
-    @api.depends('settlement.lines')
-    def _compute_commission_total(self):
-        for record in self:
-            record.commission_total = 0.0
-            for line in record.agent_line:
-                record.commission_total += sum(x.amount for x in line)
+    # @api.depends('settlement.lines')
+    # def _compute_commission_total(self):
+    #     for record in self:
+    #         record.commission_total = 0.0
+    #         for line in record.agent_line:
+    #             record.commission_total += sum(x.amount for x in line)
 
     # commission_total = fields.Float(
     #     string="Commissions",
     #     compute="_compute_commission_total",
     #     store=True,
     #     )            
-    # comm_total = fields.Float(
-    #     comodel_name='account.invoice.commission_total',
-    #     string="Comissão Total", store=True,
-    #     related='account_invoice.commission_total'
-    # )   
+    comm_total = fields.Float(
+        comodel_name='invoice_vals.commission_total',
+        string="Comissão Total", store=True,
+        related='invoice.commission_total'
+        )   
 
     @api.constrains('settlement', 'agent_line')
     def _check_company(self):
