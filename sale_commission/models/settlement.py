@@ -191,7 +191,7 @@ class SettlementLine(models.Model):
         related='settlement.company_id',
     )
 
-    @api.depends('agent_line.amount')
+    @api.depends('settlement.lines')
     def _compute_commission_total(self):
         for record in self:
             record.commission_total = 0.0
