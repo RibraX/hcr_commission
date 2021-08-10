@@ -202,12 +202,15 @@ class SettlementLine(models.Model):
             for line in record.agent_line:
                 record.commission_total += sum(x.amount for x in line)
 
+    # commission_total = fields.Float(
+    #     string="Commissions",
+    #     compute="_compute_commission_total",
+    #     store=True,
+    #     )            
     commission_total = fields.Float(
-        string="Commissions",
-        compute="_compute_commission_total",
-        store=True,
-        )            
-    
+        string="Comissão Total", store=True,
+        related='account_invoice.commission_total'
+    )   
 
     @api.constrains('settlement', 'agent_line')
     def _check_company(self):
