@@ -845,7 +845,7 @@ msgstr "Seções"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Select the date up to which you want to make the settlements:"
-msgstr "Selecione a data até a qual deseja realizar os abatimentos:"
+msgstr "Selecione a data final para calcular as comissões:"
 
 #. module: sale_commission
 #: selection:res.partner,settlement:0
@@ -879,12 +879,12 @@ msgstr "Total abatido"
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement_line__settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_form
 msgid "Settlement"
-msgstr "Abatimento"
+msgstr "Fechamento"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_graph
 msgid "Settlement analysis"
-msgstr "Análise de abatimentos"
+msgstr "Análise de Comissões"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_sale_commission_settlement__lines
@@ -919,7 +919,7 @@ msgstr "Relatório de Liquidação"
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
 msgid "Settlement search"
-msgstr "Pesquisar abatimentos"
+msgstr "Pesquisar Fechamentos"
 
 #. module: sale_commission
 #: model:ir.actions.act_window,name:sale_commission.action_settle_commission
