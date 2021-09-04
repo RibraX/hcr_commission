@@ -221,42 +221,42 @@ class SettlementLine(models.Model):
                 if line.company_id != record.company_id:
                     raise UserError(_("Company must be the same"))
 
-####################################
-    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-        with_ = ("WITH %s" % with_clause) if with_clause else ""
+# ####################################
+#     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
+#         with_ = ("WITH %s" % with_clause) if with_clause else ""
 
-        select_ = """
-            min(scsl.id) as id,
-            scsl.invoice as invoice
-            """
+#         select_ = """
+#             min(scsl.id) as id,
+#             scsl.invoice as invoice
+#             """
 
-        for field in fields.values():
-            select_ += field
+#         for field in fields.values():
+#             select_ += field
 
-        from_ = """
-            sale_commission_settlement_line scsl,
-            %s
-        """ % from_clause
+#         from_ = """
+#             sale_commission_settlement_line scsl,
+#             %s
+#         """ % from_clause
 
-        groupby_ = """
-            scsl.invoice,
-            %s
-        """ % (groupby)
+#         groupby_ = """
+#             scsl.invoice,
+#             %s
+#         """ % (groupby)
 
-        return '%s (SELECT %s FROM %s WHERE scsl.invoice IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+#         return '%s (SELECT %s FROM %s WHERE scsl.invoice IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
 
-    @api.model_cr
-    def init(self):
-        # self._table = sale_report
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
+#     @api.model_cr
+#     def init(self):
+#         # self._table = sale_report
+#         tools.drop_view_if_exists(self.env.cr, self._table)
+#         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
-   @api.multi
-    def _get_report_values(self, docids, data=None):
-        docs = self.env['sale.commission.settlement.line'].browse(docids)
-        return {
-            'doc_ids': docs.ids,
-            'doc_model': 'sale.commission.settlement.line',
-            'docs': docs,
-            'proforma': True
-        }
+#    @api.multi
+#     def _get_report_values(self, docids, data=None):
+#         docs = self.env['sale.commission.settlement.line'].browse(docids)
+#         return {
+#             'doc_ids': docs.ids,
+#             'doc_model': 'sale.commission.settlement.line',
+#             'docs': docs,
+#             'proforma': True
+#         }
