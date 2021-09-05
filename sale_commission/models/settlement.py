@@ -232,7 +232,7 @@ class SettlementReport(models.Model):
 
     origin = fields.Char(
         string="Origin",
-        related='invoice_line.origin') 
+        related='account_invoice.origin') 
 
     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
         with_ = ("WITH %s" % with_clause) if with_clause else ""
