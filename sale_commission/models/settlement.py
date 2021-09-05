@@ -222,41 +222,53 @@ class SettlementLine(models.Model):
                     raise UserError(_("Company must be the same"))
 
 # ####################################
-#     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-#         with_ = ("WITH %s" % with_clause) if with_clause else ""
+class SettlementReport(models.Model):
+    _name = "sale.commission.settlement.report"
+    _auto = False
+    _description = "Report of a commission settlement"
 
-#         select_ = """
-#             min(scsl.id) as id,
-#             scsl.invoice as invoice
-#             """
+    invoice = fields.Many2one(
+        comodel_name='account.invoice', store=True, string="Invoice",
+        related='invoice_line.invoice_id')
+    origin = fields.Char(
+        string="Origin", store=True,
+        related='invoice_line.origin') 
 
-#         for field in fields.values():
-#             select_ += field
+    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
+        with_ = ("WITH %s" % with_clause) if with_clause else ""
 
-#         from_ = """
-#             sale_commission_settlement_line scsl,
-#             %s
-#         """ % from_clause
+        select_ = """
+            min(scsl.id) as id,
+            scsl.invoice as invoice
+            """
 
-#         groupby_ = """
-#             scsl.invoice,
-#             %s
-#         """ % (groupby)
+        for field in fields.values():
+            select_ += field
 
-#         return '%s (SELECT %s FROM %s WHERE scsl.invoice IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+        from_ = """
+            sale_commission_settlement_line scsl,
+            %s
+        """ % from_clause
 
-#     @api.model_cr
-#     def init(self):
-#         # self._table = sale_report
-#         tools.drop_view_if_exists(self.env.cr, self._table)
-#         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
+        groupby_ = """
+            scsl.invoice,
+            %s
+        """ % (groupby)
 
-#    @api.multi
-#     def _get_report_values(self, docids, data=None):
-#         docs = self.env['sale.commission.settlement.line'].browse(docids)
-#         return {
-#             'doc_ids': docs.ids,
-#             'doc_model': 'sale.commission.settlement.line',
-#             'docs': docs,
-#             'proforma': True
-#         }
+        return '%s (SELECT %s FROM %s WHERE scsl.invoice IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+
+    @api.model_cr
+    def init(self):
+        # self._table = sale_report
+        tools.drop_view_if_exists(self.env.cr, self._table)
+        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
+
+   @api.multi
+    def _get_report_values(self, docids, data=None):
+        docs = self.env['sale.commission.settlement.line'].browse(docids)
+        return {
+            'doc_ids': docs.ids,
+            'doc_model': 'sale.commission.settlement.line',
+            'docs': docs,
+            'proforma': True
+        }
