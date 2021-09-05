@@ -227,8 +227,9 @@ class SettlementReport(models.Model):
     _auto = False
     _description = "Report of a commission settlement"
 
-    invoice = fields.Many2one('account.invoice', string="Invoice",
-        related='invoice_line.invoice_id', readonly=True)
+#    invoice = fields.Many2one('account.invoice', string="Invoice",
+#        related='invoice_line.invoice_id', readonly=True)
+
     origin = fields.Char(
         string="Origin",
         related='invoice_line.origin') 
@@ -238,7 +239,7 @@ class SettlementReport(models.Model):
 
         select_ = """
             min(scsl.id) as id,
-            scsl.invoice as invoice
+            scsl.origin as origin
             """
 
         for field in fields.values():
