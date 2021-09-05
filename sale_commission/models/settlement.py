@@ -259,7 +259,7 @@ class SettlementReport(models.Model):
 
     @api.model_cr
     def init(self):
-        self._table = invoice_report
+        self._table = settlement_report
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
