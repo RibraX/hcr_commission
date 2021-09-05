@@ -230,7 +230,7 @@ class SettlementReport(models.Model):
 #    invoice = fields.Many2one('account.invoice', string="Invoice",
 #        related='invoice_line.invoice_id', readonly=True)
 
-    origin = fields.Char(
+    origin = fields.Char('account.invoice',
         string="Origin",
         related='account_invoice.origin') 
 
