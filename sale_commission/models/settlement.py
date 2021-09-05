@@ -227,11 +227,10 @@ class SettlementReport(models.Model):
     _auto = False
     _description = "Report of a commission settlement"
 
-    invoice = fields.Many2one(
-        comodel_name='account.invoice', store=True, string="Invoice",
-        related='invoice_line.invoice_id')
+    invoice = fields.Many2one('account.invoice', string="Invoice",
+        related='invoice_line.invoice_id', readonly=True)
     origin = fields.Char(
-        string="Origin", store=True,
+        string="Origin",
         related='invoice_line.origin') 
 
     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
@@ -270,5 +269,5 @@ class SettlementReport(models.Model):
             'doc_ids': docs.ids,
             'doc_model': 'sale.commission.settlement.line',
             'docs': docs,
-            'proforma': True
+            'commission': True
         }
