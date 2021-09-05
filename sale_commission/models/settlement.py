@@ -255,7 +255,7 @@ class SettlementReport(models.Model):
             %s
         """ % (groupby)
 
-        return '%s (SELECT %s FROM %s WHERE scsl.invoice IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+        return '%s (SELECT %s FROM %s WHERE scsl.origin IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
 
     @api.model_cr
     def init(self):
