@@ -251,7 +251,7 @@ class SettlementReport(models.Model):
         """ % from_clause
 
         groupby_ = """
-            scsl.invoice,
+            scsl.origin,
             %s
         """ % (groupby)
 
