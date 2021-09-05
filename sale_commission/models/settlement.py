@@ -221,54 +221,54 @@ class SettlementLine(models.Model):
                 if line.company_id != record.company_id:
                     raise UserError(_("Company must be the same"))
 
-# ####################################
-class SettlementReport(models.Model):
-    _name = "sale.commission.settlement.repo"
-    _auto = False
-    _description = "Report of a commission settlement"
+# # ####################################
+# class SettlementReport(models.Model):
+#     _name = "sale.commission.settlement.repo"
+#     _auto = False
+#     _description = "Report of a commission settlement"
 
-#    invoice = fields.Many2one('account.invoice', string="Invoice",
-#        related='invoice_line.invoice_id', readonly=True)
+# #    invoice = fields.Many2one('account.invoice', string="Invoice",
+# #        related='invoice_line.invoice_id', readonly=True)
 
-    origin = fields.Char('account.invoice',
-        string="Origin",
-        related='account_invoice.origin') 
+#     origin = fields.Char('account.invoice',
+#         string="Origin",
+#         related='account_invoice.origin') 
 
-    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-        with_ = ("WITH %s" % with_clause) if with_clause else ""
+#     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
+#         with_ = ("WITH %s" % with_clause) if with_clause else ""
 
-        select_ = """
-            min(scsl.id) as id,
-            scsl.origin as origin
-            """
+#         select_ = """
+#             min(scsl.id) as id,
+#             scsl.origin as origin
+#             """
 
-        for field in fields.values():
-            select_ += field
+#         for field in fields.values():
+#             select_ += field
 
-        from_ = """
-            sale_commission_settlement_line scsl,
-            %s
-        """ % from_clause
+#         from_ = """
+#             sale_commission_settlement_line scsl,
+#             %s
+#         """ % from_clause
 
-        groupby_ = """
-            scsl.origin,
-            %s
-        """ % (groupby)
+#         groupby_ = """
+#             scsl.origin,
+#             %s
+#         """ % (groupby)
 
-        return '%s (SELECT %s FROM %s WHERE scsl.origin IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+#         return '%s (SELECT %s FROM %s WHERE scsl.origin IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
 
-    @api.model_cr
-    def init(self):
-        self._table = settlement_repo
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
+#     @api.model_cr
+#     def init(self):
+#         self._table = settlement_repo
+#         tools.drop_view_if_exists(self.env.cr, self._table)
+#         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
-    @api.multi
-    def _get_report_values(self, docids, data=None):
-        docs = self.env['sale.commission.settlement.line'].browse(docids)
-        return {
-            'doc_ids': docs.ids,
-            'doc_model': 'sale.commission.settlement.line',
-            'docs': docs,
-            'commission': True
-        }
+#     @api.multi
+#     def _get_report_values(self, docids, data=None):
+#         docs = self.env['sale.commission.settlement.line'].browse(docids)
+#         return {
+#             'doc_ids': docs.ids,
+#             'doc_model': 'sale.commission.settlement.line',
+#             'docs': docs,
+#             'commission': True
+#         }
