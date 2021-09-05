@@ -223,7 +223,7 @@ class SettlementLine(models.Model):
 
 # ####################################
 class SettlementReport(models.Model):
-    _name = "sale.commission.settlement.report"
+    _name = "sale.commission.settlement.repo"
     _auto = False
     _description = "Report of a commission settlement"
 
@@ -259,7 +259,7 @@ class SettlementReport(models.Model):
 
     @api.model_cr
     def init(self):
-        self._table = settlement_report
+        self._table = settlement_repo
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
