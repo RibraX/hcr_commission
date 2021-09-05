@@ -72,6 +72,7 @@
                 </group>
                 <group string="Commission lines" colspan="4">
                     <field name="lines" nolabel="1">
+                    <field name="model">sale.commission.settlement.report</field>
                         <tree string="Settlement lines">
                             <field name="date"/>
                             <field name="customer"/>
