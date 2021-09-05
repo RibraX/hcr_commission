@@ -230,9 +230,9 @@ class SettlementReport(models.Model):
 #    invoice = fields.Many2one('account.invoice', string="Invoice",
 #        related='invoice_line.invoice_id', readonly=True)
 
-    # origin = fields.Char(
-    #     string="Origin",
-    #     related='invoice_line.origin') 
+    origin = fields.Char(
+        string="Origin",
+        related='invoice_line.origin') 
 
     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
         with_ = ("WITH %s" % with_clause) if with_clause else ""
