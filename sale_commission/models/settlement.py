@@ -230,36 +230,36 @@ class SettlementReport(models.Model):
 #    invoice = fields.Many2one('account.invoice', string="Invoice",
 #        related='invoice_line.invoice_id', readonly=True)
 
-    origin = fields.Char(
-        string="Origin",
-        related='invoice_line.origin') 
+    # origin = fields.Char(
+    #     string="Origin",
+    #     related='invoice_line.origin') 
 
-    # def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-    #     with_ = ("WITH %s" % with_clause) if with_clause else ""
+    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
+        with_ = ("WITH %s" % with_clause) if with_clause else ""
 
-    #     select_ = """
-    #         min(scsl.id) as id,
-    #         scsl.origin as origin
-    #         """
+        select_ = """
+            min(scsl.id) as id,
+            scsl.origin as origin
+            """
 
-    #     for field in fields.values():
-    #         select_ += field
+        for field in fields.values():
+            select_ += field
 
-    #     from_ = """
-    #         sale_commission_settlement_line scsl,
-    #         %s
-    #     """ % from_clause
+        from_ = """
+            sale_commission_settlement_line scsl,
+            %s
+        """ % from_clause
 
-    #     groupby_ = """
-    #         scsl.origin,
-    #         %s
-    #     """ % (groupby)
+        groupby_ = """
+            scsl.origin,
+            %s
+        """ % (groupby)
 
-    #     return '%s (SELECT %s FROM %s WHERE scsl.origin IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+        return '%s (SELECT %s FROM %s WHERE scsl.origin IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
 
     @api.model_cr
     def init(self):
-        # self._table = sale_report
+        self._table = sale_report
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
