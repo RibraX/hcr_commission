@@ -3,7 +3,7 @@
 
 from odoo import api, exceptions, fields, models, _
 from odoo.exceptions import UserError
-
+from odoo import tools
 
 class Settlement(models.Model):
     _name = "sale.commission.settlement"
@@ -259,16 +259,16 @@ class SettlementReport(models.Model):
 
     @api.model_cr
     def init(self):
-        self._table = sale_report
+        self._table = invoice_report
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
-#    @api.multi
-#     def _get_report_values(self, docids, data=None):
-#         docs = self.env['sale.commission.settlement.line'].browse(docids)
-#         return {
-#             'doc_ids': docs.ids,
-#             'doc_model': 'sale.commission.settlement.line',
-#             'docs': docs,
-#             'commission': True
-#         }
+   @api.multi
+    def _get_report_values(self, docids, data=None):
+        docs = self.env['sale.commission.settlement.line'].browse(docids)
+        return {
+            'doc_ids': docs.ids,
+            'doc_model': 'sale.commission.settlement.line',
+            'docs': docs,
+            'commission': True
+        }
