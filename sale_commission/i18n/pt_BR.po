@@ -857,7 +857,7 @@ msgstr "Semestral"
 #: model:ir.ui.menu,name:sale_commission.menu_agents_settlement
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settled_wizard
 msgid "Settle commissions"
-msgstr "Abater comissões"
+msgstr "Fechar comissões"
 
 #. module: sale_commission
 #: model:ir.model.fields,field_description:sale_commission.field_account_invoice_line_agent__settled
@@ -872,7 +872,7 @@ msgstr "A Pagar"
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_line_tree
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_tree
 msgid "Settled total"
-msgstr "Total abatido"
+msgstr "Total Comissão"
 
 #. module: sale_commission
 #: model:ir.model,name:sale_commission.model_sale_commission_settlement
@@ -914,7 +914,7 @@ msgstr "Período de abatimento não é válido."
 #. module: sale_commission
 #: model:ir.actions.report,name:sale_commission.action_report_settlement
 msgid "Settlement report"
-msgstr "Relatório de Liquidação"
+msgstr "Relatório de Comissão"
 
 #. module: sale_commission
 #: model_terms:ir.ui.view,arch_db:sale_commission.view_settlement_search
