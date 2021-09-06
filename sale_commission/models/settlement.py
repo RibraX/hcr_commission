@@ -261,7 +261,7 @@ class SettlementLine(models.Model):
 
     @api.model_cr
     def init(self):
-        self._table = sale.comission.settlement.line
+        self._table = sale_comission.settlement.line
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
