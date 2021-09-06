@@ -181,10 +181,10 @@ class SettlementLine(models.Model):
         string="Customer", store=True,
         related='invoice_line.partner_id.name'
     )     
-    # customer = fields.Char(
-    #     string="Customer", default = "teste"
-    # )     
-    # customer = "customer"
+    customer = fields.Char(
+        string="Customer", default = "teste"
+    )     
+    customer = "customer"
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
@@ -196,8 +196,8 @@ class SettlementLine(models.Model):
         store=True,
         readonly=True,
     )
-    # commission = fields.Many2one(
-    #     comodel_name="sale.commission", related="agent_line.commission")
+    commission = fields.Many2one(
+        comodel_name="sale.commission", related="agent_line.commission")
     company_id = fields.Many2one(
         comodel_name='res.company',
         related='settlement.company_id',
