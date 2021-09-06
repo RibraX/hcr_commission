@@ -42,8 +42,8 @@
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
-        <field name="model">sale.commission.teste</field>
-        <!-- <field name="model">sale.commission.settlement</field> -->
+        <!-- <field name="model">sale.commission.teste</field> -->
+        <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
                 <!-- <header>
@@ -75,15 +75,15 @@
                     <field name="lines" nolabel="1">
                     <!-- <field name="model">sale.commission.teste</field> -->
                         <tree string="Settlement lines">
-                            <field name="invoice_origin"/>
-                            <field name="amount"/>
-                            <!-- <field name="invoice"/> -->
-                            <!-- <field name="origin"/> -->
-                            <!-- <field name="invoice"/> -->
-                            <!-- <field name="invoice_line"/> -->
-                            <!-- <field name="commission"/> -->
-                            <!-- <field name="settled_amount"/> -->
-                            <!-- <field name="comm_total"/> -->
+                            <!-- <field name="invoice_origin"/>
+                            <field name="amount"/> -->
+                            <field name="invoice"/>
+                            <field name="origin"/>
+                            <field name="invoice"/>
+                            <field name="invoice_line"/>
+                            <field name="commission"/>
+                            <field name="settled_amount"/>
+                            <field name="comm_total"/>
                         </tree>
                     </field>
                 </group>
@@ -99,13 +99,13 @@
 
     <record model="ir.ui.view" id="view_settlement_line_tree">
         <field name="name">xxxxxx lines</field>
-        <field name="model">sale.commission.teste</field>
-        <!-- <field name="model">sale.commission.settlement.line</field> -->
+        <!-- <field name="model">sale.commission.teste</field> -->
+        <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
             <tree string="Comissão XYZ" create="false" >
-                <field name="invoice_origin"/>
-                <field name="amount"/>
-                <field name="date_invoice"/>
+                <!-- <field name="invoice_origin"/> -->
+                <!-- <field name="amount"/> -->
+                <field name="date"/>
                 <field name="agent"/>
                 <field name="invoice"/>
                 <field name="invoice_line"/>
