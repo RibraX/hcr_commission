@@ -104,7 +104,7 @@
             <tree string="Comissão XYZ" create="false" >
                 <field name="invoice_origin"/>
                 <field name="amount"/>
-                <field name="date"/>
+                <field name="date_invoice"/>
                 <field name="agent"/>
                 <field name="invoice"/>
                 <field name="invoice_line"/>
