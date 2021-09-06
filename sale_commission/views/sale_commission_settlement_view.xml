@@ -40,7 +40,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_settlement_line_tree">
+    <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
         <field name="model">sale.commission.settlement.report</field>
         <!-- <field name="model">sale.commission.settlement</field> -->
