@@ -250,7 +250,7 @@ class ComissaoTeste(models.Model):
         'product.category',
         'Category of Product',
         readonly=True)
-    product_id = fields.Many2one('product.product', 'Product', readonly=True)
+    # product_id = fields.Many2one('product.product', 'Product', readonly=True)
     uom_id = fields.Many2one('uom.uom', 'Unit of Measure', readonly=True)
     quantity = fields.Float('# of Qty', readonly=True)
     price_unit = fields.Float('Price unit', readonly=True)
@@ -280,7 +280,6 @@ class ComissaoTeste(models.Model):
             ail.company_id AS company_id,
             rp.id AS agent_id,
             pt.categ_id AS categ_id,
-            ail.product_id AS product_id,
             pt.uom_id AS uom_id,
             SUM(ail.quantity) AS quantity,
             AVG(ail.price_unit) AS price_unit,
@@ -292,6 +291,7 @@ class ComissaoTeste(models.Model):
             aila.settled AS settled,
             aila.commission AS commission_id
         """
+        # ail.product_id AS product_id,
         return select_str
 
     def _from(self):
@@ -314,12 +314,12 @@ class ComissaoTeste(models.Model):
             ail.company_id,
             rp.id,
             pt.categ_id,
-            ail.product_id,
             pt.uom_id,
             ail.id,
             aila.settled,
             aila.commission
         """
+        # ail.product_id,
         return group_by_str
 
     @api.model
