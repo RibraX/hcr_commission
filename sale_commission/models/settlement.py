@@ -235,45 +235,43 @@ class ComissaoTeste(models.Model):
     _auto = False
     _rec_name = 'commission_id'
 
-    # invoice = fields.Many2one(
-    #     comodel_name='account.invoice', store=True, string="Invoice",
-    #     related='account.invoice.invoice_id')
 
     @api.model
     def _get_selection_invoice_state(self):
         return self.env['account.invoice'].fields_get(
             allfields=['state'])['state']['selection']
 
-    invoice_state = fields.Selection(selection='_get_selection_invoice_state',
-                                     string='Invoice Status', readonly=True)
-    date_invoice = fields.Date('Date Invoice', readonly=True)
-    company_id = fields.Many2one('res.company', 'Company', readonly=True)
-    partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
-    agent_id = fields.Many2one('res.partner', 'Agent', readonly=True)
-    categ_id = fields.Many2one(
-        'product.category',
-        'Category of Product',
-        readonly=True)
-    # product_id = fields.Many2one('product.product', 'Product', readonly=True)
-    uom_id = fields.Many2one('uom.uom', 'Unit of Measure', readonly=True)
-    quantity = fields.Float('# of Qty', readonly=True)
-    price_unit = fields.Float('Price unit', readonly=True)
-    price_subtotal = fields.Float('Price subtotal', readonly=True)
-    price_subtotal_signed = fields.Float(
-        string='Price subtotal signed',
-        readonly=True,
-    )
-    percentage = fields.Integer('Percentage of commission', readonly=True)
-    amount = fields.Float('Amount', readonly=True)
-    invoice_line_id = fields.Many2one(
-        'account.invoice.line',
-        'Invoice line',
-        readonly=True)
-    settled = fields.Boolean('Settled', readonly=True)
-    commission_id = fields.Many2one(
-        'sale.commission',
-        'Sale commission',
-        readonly=True)
+    # invoice_state = fields.Selection(selection='_get_selection_invoice_state',
+    #                                  string='Invoice Status', readonly=True)
+    # so_origin = fields.Date('Date Invoice', readonly=True)
+    so_origin = fields.Many2one('account_invoice.origin', 'SO', readonly=True)
+    commission_total = fields.Many2one('account_invoice.commission_total', 'Comissão', readonly=True)
+    # partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
+    # agent_id = fields.Many2one('res.partner', 'Agent', readonly=True)
+    # categ_id = fields.Many2one(
+    #     'product.category',
+    #     'Category of Product',
+    #     readonly=True)
+    # # product_id = fields.Many2one('product.product', 'Product', readonly=True)
+    # uom_id = fields.Many2one('uom.uom', 'Unit of Measure', readonly=True)
+    # quantity = fields.Float('# of Qty', readonly=True)
+    # price_unit = fields.Float('Price unit', readonly=True)
+    # price_subtotal = fields.Float('Price subtotal', readonly=True)
+    # price_subtotal_signed = fields.Float(
+    #     string='Price subtotal signed',
+    #     readonly=True,
+    # )
+    # percentage = fields.Integer('Percentage of commission', readonly=True)
+    # amount = fields.Float('Amount', readonly=True)
+    # invoice_line_id = fields.Many2one(
+    #     'account.invoice.line',
+    #     'Invoice line',
+    #     readonly=True)
+    # settled = fields.Boolean('Settled', readonly=True)
+    # commission_id = fields.Many2one(
+    #     'sale.commission',
+    #     'Sale commission',
+    #     readonly=True)
 
     def _select(self):
         select_str = """
