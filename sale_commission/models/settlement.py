@@ -4,6 +4,7 @@
 from odoo import api, exceptions, fields, models, _
 from odoo.exceptions import UserError
 from odoo import tools
+from psycopg2.extensions import AsIs
 
 class Settlement(models.Model):
     _name = "sale.commission.settlement"
