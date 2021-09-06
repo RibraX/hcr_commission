@@ -104,12 +104,12 @@
             <tree string="Comissão XYZ" create="false" >
                 <field name="invoice_origin"/>
                 <field name="amount"/>
-                <!-- <field name="date"/>
+                <field name="date"/>
                 <field name="agent"/>
                 <field name="invoice"/>
                 <field name="invoice_line"/>
                 <field name="commission"/> 
-                <field name="settled_amount" sum="Settled total"/> -->
+                <field name="settled_amount" sum="Settled total"/>
             </tree>
         </field>
     </record>
