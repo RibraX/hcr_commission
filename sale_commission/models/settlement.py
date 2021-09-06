@@ -245,7 +245,7 @@ class SettlementReport(models.Model):
     settlement = fields.Integer('Fechamento', readonly=True)
     agent = fields.Integer('Representante', readonly=True)
     origin = fields.Char('Pedido', readonly=True)
-    customer = fields.Char('Cliente', readonly=True)
+    # customer = fields.Char('Cliente', readonly=True)
     comm_total = fields.Float('Comissão', readonly=True)
             
     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
@@ -256,7 +256,6 @@ class SettlementReport(models.Model):
             settlement,
             agent,
             origin,
-            customer,
             comm_total
         """
 
@@ -264,7 +263,7 @@ class SettlementReport(models.Model):
             select_ += field
 
         from_ = """
-                public.sale_commission_settlement_line
+                sale_commission_settlement_line
                 %s
         """ % from_clause
 
@@ -272,7 +271,6 @@ class SettlementReport(models.Model):
             settlement,
             agent,
             origin,
-            customer,
             comm_total
              %s
         """ % (groupby)
