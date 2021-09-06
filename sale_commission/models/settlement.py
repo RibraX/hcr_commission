@@ -227,18 +227,18 @@ class SettlementLine(models.Model):
                 if line.company_id != record.company_id:
                     raise UserError(_("Company must be the same"))
 
-# # ####################################
-# class SettlementReport(models.Model):
-#     _name = "sale.commission.settlement.repo"
+####################################
+class SettlementReport(models.Model):
+    _name = "sale.commission.settlement.repo"
 #     _auto = False
-#     _description = "Report of a commission settlement"
+    _description = "Report of a commission settlement"
 
-# #    invoice = fields.Many2one('account.invoice', string="Invoice",
-# #        related='invoice_line.invoice_id', readonly=True)
+    invoice = fields.Many2one('account.invoice', string="Invoice",
+       related='invoice_line.invoice_id', readonly=True)
 
-#     origin = fields.Char('account.invoice',
-#         string="Origin",
-#         related='account_invoice.origin') 
+    origin = fields.Char('account.invoice',
+        string="Origin",
+        related='account_invoice.origin') 
 
 #     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
 #         with_ = ("WITH %s" % with_clause) if with_clause else ""
@@ -271,7 +271,7 @@ class SettlementLine(models.Model):
 
 #     @api.multi
 #     def _get_report_values(self, docids, data=None):
-#         docs = self.env['sale.commission.settlement.line'].browse(docids)
+#         docs = self.env['sale.commission.settlement.repo'].browse(docids)
 #         return {
 #             'doc_ids': docs.ids,
 #             'doc_model': 'sale.commission.settlement.line',
