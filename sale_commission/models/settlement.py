@@ -235,6 +235,10 @@ class ComissaoTeste(models.Model):
     _auto = False
     _rec_name = 'commission_id'
 
+    invoice = fields.Many2one(
+        comodel_name='account.invoice', store=True, string="Invoice",
+        related='invoice_line.invoice_id')
+
     @api.model
     def _get_selection_invoice_state(self):
         return self.env['account.invoice'].fields_get(

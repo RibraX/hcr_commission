@@ -76,7 +76,7 @@
                     <!-- <field name="model">sale.commission.teste</field> -->
                     <tree string="Settlement lines">
                         <field name="date_invoice"/>
-                        <field name="invoice_line_id"/>
+                        <field name="invoice"/>
                         <!-- <field name="origin"/> -->
                         <!-- <field name="invoice"/> -->
                         <!-- <field name="invoice_line"/> -->
