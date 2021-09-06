@@ -230,6 +230,7 @@ class SettlementLine(models.Model):
 
 
 class SettlementReport(models.Model):
+    _inherit = "sale.commission.settlement.line"
     _name = "sale.commission.settlement.report"
     _description = "Sales Commission Settlement Report"
     _auto = False

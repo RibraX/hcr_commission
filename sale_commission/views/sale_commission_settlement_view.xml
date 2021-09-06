@@ -42,8 +42,8 @@
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
-        <field name="model">sale.commission.settlement.report</field>
-        <!-- <field name="model">sale.commission.settlement</field> -->
+        <!-- <field name="model">sale.commission.settlement.report</field> -->
+        <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
                 <!-- <header>
@@ -73,7 +73,7 @@
                 </group> -->
                 <group string="Commission lines" colspan="5">
                     <!-- <field name="lines" nolabel="1"> -->
-                    <!-- <field name="model">sale.commission.teste</field> -->
+                    <field name="model">sale.commission.settlement.report</field>
                     <tree string="Comissão XXX">
                         <!-- <field name="invoice_origin"/>
                         <field name="amount"/> -->
@@ -98,10 +98,8 @@
     </record>
 
     <record model="ir.ui.view" id="view_settlement_line_tree">
-        <field name="name">xxxxxx lines</field>
-        <!-- <field name="model">sale.commission.teste</field> -->
+        <field name="name">Comissao lines</field>
         <field name="model">sale.commission.settlement.report</field>
-        <!-- <field name="model">sale.commission.settlement.line</field> -->
         <field name="arch" type="xml">
             <tree string="Comissão XYZ" create="false" >
                 <!-- <field name="invoice_origin"/> -->
@@ -111,6 +109,7 @@
                 <field name="invoice"/>
                 <field name="invoice_line"/> -->
                 <!-- <field name="commission"/>  -->
+                <field name="agent" />
                 <field name="origin" />
                 <field name="comm_total" sum="Settled total"/>
             </tree>
