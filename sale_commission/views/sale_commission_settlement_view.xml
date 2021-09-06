@@ -98,15 +98,18 @@
 
     <record model="ir.ui.view" id="view_settlement_line_tree">
         <field name="name">Settlement lines</field>
-        <field name="model">sale.commission.settlement.line</field>
+        <field name="model">sale.commission.teste</field>
+        <!-- <field name="model">sale.commission.settlement.line</field> -->
         <field name="arch" type="xml">
             <tree string="Settlement lines" create="false" >
-                <field name="date"/>
+                <field name="date_invoice"/>
+                <field name="invoice_line_id"/>
+                <!-- <field name="date"/>
                 <field name="agent"/>
                 <field name="invoice"/>
-                <field name="invoice_line"/>
+                <!-- <field name="invoice_line"/> -->
                 <!-- <field name="commission"/> -->
-                <field name="settled_amount" sum="Settled total"/>
+                <field name="settled_amount" sum="Settled total"/> -->
             </tree>
         </field>
     </record>
