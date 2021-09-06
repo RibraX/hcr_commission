@@ -176,9 +176,12 @@ class SettlementLine(models.Model):
         string="Origin", store=True,
         related='invoice_line.origin') 
     # origin = "teste"
+    # customer = fields.Char(
+    #     string="Customer", store=True,
+    #     related='invoice_line.partner_id.name'
+    # )     
     customer = fields.Char(
-        string="Customer", store=True,
-        related='invoice_line.partner_id.name'
+        string="Customer", default = "customer"
     )     
     # customer = "customer"
     agent = fields.Many2one(
