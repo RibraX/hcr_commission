@@ -85,7 +85,7 @@
                         <!-- <field name="settled_amount"/> -->
                         <field name="comm_total"/>
                     </tree>
-                    <!-- </field> -->
+                    </field>
                 </group>
                 <!-- <group class="oe_subtotal_footer oe_right">
                     <field name="total"
