@@ -73,7 +73,7 @@
                 </group> -->
                 <group string="Commission lines" colspan="5">
                     <!-- <field name="lines" nolabel="1"> -->
-            <!-- <field name="model">sale.commission.settlement.report</field> -->
+                    <field name="model">sale.commission.settlement.report</field>
                     <tree string="Comissão XXX">
                         <!-- <field name="invoice_origin"/>
                         <field name="amount"/> -->
