@@ -40,7 +40,7 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_settlement_form">
+    <record model="ir.ui.view" id="view_settlement_line_tree">
         <field name="name">Settlements</field>
         <field name="model">sale.commission.settlement.report</field>
         <!-- <field name="model">sale.commission.settlement</field> -->
@@ -72,20 +72,20 @@
                     </group>
                 </group> -->
                 <group string="Commission lines" colspan="5">
-                    <field name="lines" nolabel="1">
+                    <!-- <field name="lines" nolabel="1"> -->
                     <!-- <field name="model">sale.commission.teste</field> -->
-                        <tree string="Comissão XXX">
-                            <!-- <field name="invoice_origin"/>
-                            <field name="amount"/> -->
-                            <!-- <field name="invoice"/> -->
-                            <field name="origin"/>
-                            <!-- <field name="invoice"/> -->
-                            <!-- <field name="invoice_line"/> -->
-                            <!-- <field name="commission"/> -->
-                            <!-- <field name="settled_amount"/> -->
-                            <field name="comm_total"/>
-                        </tree>
-                    </field>
+                    <tree string="Comissão XXX">
+                        <!-- <field name="invoice_origin"/>
+                        <field name="amount"/> -->
+                        <!-- <field name="invoice"/> -->
+                        <field name="origin"/>
+                        <!-- <field name="invoice"/> -->
+                        <!-- <field name="invoice_line"/> -->
+                        <!-- <field name="commission"/> -->
+                        <!-- <field name="settled_amount"/> -->
+                        <field name="comm_total"/>
+                    </tree>
+                    <!-- </field> -->
                 </group>
                 <!-- <group class="oe_subtotal_footer oe_right">
                     <field name="total"
