@@ -19,7 +19,26 @@
         </field>
     </record>
 
-    
+    <record id="view_settlement_search" model="ir.ui.view">
+        <field name="name">sale.commission.settlement.search</field>
+        <field name="model">sale.commission.settlement</field>
+        <field name="arch" type="xml">
+            <search string="Settlement search">
+                <field name="agent"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="company_id"/>
+                <filter string="This year"
+                        name="thisyear"
+                        domain="[('date_from', '&gt;=', time.strftime('%%Y-01-01')), ('date_to', '&lt;=', time.strftime('%%Y-12-31'))]" />
+                <separator/>
+                <group expand="1" string="Group By">
+                    <filter string="Agent" name="group_agent" context="{'group_by': 'agent'}"/>
+                    <filter string="Date from month" name="group_date" context="{'group_by': 'date_from:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
@@ -78,11 +97,11 @@
     </record>
 
     <record model="ir.ui.view" id="view_settlement_line_tree">
-        <field name="name">Settlement lines</field>
+        <field name="name">xxxxxx lines</field>
         <field name="model">sale.commission.teste</field>
         <!-- <field name="model">sale.commission.settlement.line</field> -->
         <field name="arch" type="xml">
-            <tree string="Settlement lines" create="false" >
+            <tree string="Comissão XYZ" create="false" >
                 <field name="invoice_origin"/>
                 <field name="amount"/>
                 <!-- <field name="date"/>
