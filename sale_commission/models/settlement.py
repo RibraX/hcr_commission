@@ -167,9 +167,9 @@ class SettlementLine(models.Model):
         relation='settlement_agent_line_rel', column1='settlement_id',
         column2='agent_line_id', required=True)
     date = fields.Date(related="agent_line.invoice_date", store=True)
-    # invoice_line = fields.Many2one(
-    #     comodel_name='account.invoice.line', store=True,
-    #     related='agent_line.object_id')
+    invoice_line = fields.Many2one(
+        comodel_name='account.invoice.line', store=True,
+        related='agent_line.object_id')
     invoice = fields.Many2one(
         comodel_name='account.invoice', store=True, string="Invoice",
         related='invoice_line.invoice_id')
