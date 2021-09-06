@@ -72,25 +72,25 @@
                 </group>
                 <group string="Commission lines" colspan="4">
                     <field name="lines" nolabel="1">
-                    <!-- <field name="model">sale.commission.settlement.repo</field> -->
+                    <field name="model">sale.commission.teste</field>
                         <tree string="Settlement lines">
-                            <field name="date"/>
-                            <field name="customer"/>
-                            <field name="origin"/>
-                            <field name="invoice"/>
+                            <field name="date_invoice"/>
+                            <field name="invoice_line_id"/>
+                            <!-- <field name="origin"/> -->
+                            <!-- <field name="invoice"/> -->
                             <!-- <field name="invoice_line"/> -->
-                            <field name="commission"/>
+                            <!-- <field name="commission"/> -->
                             <!-- <field name="settled_amount"/> -->
-                            <field name="comm_total"/>
+                            <!-- <field name="comm_total"/> -->
                         </tree>
                     </field>
                 </group>
-                <group class="oe_subtotal_footer oe_right">
+                <!-- <group class="oe_subtotal_footer oe_right">
                     <field name="total"
                            class="oe_subtotal_footer_separator"
                            widget="monetary"
                            options="{'currency_field': 'currency_id'}"/>
-                </group>
+                </group> -->
             </form>
         </field>
     </record>
