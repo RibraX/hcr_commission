@@ -80,7 +80,7 @@
                             <field name="invoice"/>
                             <!-- <field name="invoice_line"/> -->
                             <field name="commission"/>
-                            <field name="settled_amount"/>
+                            <!-- <field name="settled_amount"/> -->
                             <field name="comm_total"/>
                         </tree>
                     </field>
@@ -104,7 +104,7 @@
                 <field name="agent"/>
                 <field name="invoice"/>
                 <field name="invoice_line"/>
-                <field name="commission"/>
+                <!-- <field name="commission"/> -->
                 <field name="settled_amount" sum="Settled total"/>
             </tree>
         </field>
