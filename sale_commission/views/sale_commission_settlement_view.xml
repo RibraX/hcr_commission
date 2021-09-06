@@ -74,7 +74,7 @@
                 <group string="Commission lines" colspan="5">
                     <field name="lines" nolabel="1">
                     <!-- <field name="model">sale.commission.teste</field> -->
-                        <tree string="Settlement lines">
+                        <tree string="Comissão XXX">
                             <!-- <field name="invoice_origin"/>
                             <field name="amount"/> -->
                             <field name="invoice"/>
@@ -82,7 +82,7 @@
                             <field name="invoice"/>
                             <field name="invoice_line"/>
                             <field name="commission"/>
-                            <field name="settled_amount"/>
+                            <!-- <field name="settled_amount"/> -->
                             <field name="comm_total"/>
                         </tree>
                     </field>
