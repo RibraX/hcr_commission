@@ -235,9 +235,9 @@ class ComissaoTeste(models.Model):
     _auto = False
     _rec_name = 'commission_id'
 
-    invoice = fields.Many2one(
-        comodel_name='account.invoice', store=True, string="Invoice",
-        related='invoice_line.invoice_id')
+    # invoice = fields.Many2one(
+    #     comodel_name='account.invoice', store=True, string="Invoice",
+    #     related='account.invoice.invoice_id')
 
     @api.model
     def _get_selection_invoice_state(self):
@@ -277,23 +277,10 @@ class ComissaoTeste(models.Model):
 
     def _select(self):
         select_str = """
-            SELECT MIN(aila.id) AS id,
-            ai.partner_id AS partner_id,
-            ai.state AS invoice_state,
-            ai.date_invoice AS date_invoice,
-            ail.company_id AS company_id,
-            rp.id AS agent_id,
-            pt.categ_id AS categ_id,
-            pt.uom_id AS uom_id,
-            SUM(ail.quantity) AS quantity,
-            AVG(ail.price_unit) AS price_unit,
-            SUM(ail.price_subtotal) AS price_subtotal,
-            SUM(ail.price_subtotal_signed) AS price_subtotal_signed,
-            AVG(sc.fix_qty) AS percentage,
-            SUM(aila.amount) AS amount,
-            ail.id AS invoice_line_id,
-            aila.settled AS settled,
-            aila.commission AS commission_id
+            SELECT MIN(aila.id) AS id,            
+            ai.origin AS so_origin,
+            ai.commission_total AS commission_total,
+            SUM(aila.amount) AS amount
         """
         # ail.product_id AS product_id,
         return select_str
@@ -303,25 +290,14 @@ class ComissaoTeste(models.Model):
             account_invoice_line_agent aila
             LEFT JOIN account_invoice_line ail ON ail.id = aila.object_id
             INNER JOIN account_invoice ai ON ai.id = ail.invoice_id
-            LEFT JOIN sale_commission sc ON sc.id = aila.commission
-            LEFT JOIN product_product pp ON pp.id = ail.product_id
-            INNER JOIN product_template pt ON pp.product_tmpl_id = pt.id
-            LEFT JOIN res_partner rp ON aila.agent = rp.id
         """
         return from_str
 
     def _group_by(self):
         group_by_str = """
-            GROUP BY ai.partner_id,
-            ai.state,
-            ai.date_invoice,
-            ail.company_id,
-            rp.id,
-            pt.categ_id,
-            pt.uom_id,
-            ail.id,
-            aila.settled,
-            aila.commission
+            GROUP BY 
+            ai.origin,
+            ai.commission_total
         """
         # ail.product_id,
         return group_by_str
