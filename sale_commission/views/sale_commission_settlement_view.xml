@@ -72,7 +72,7 @@
                     </group>
                 </group> -->
                 <group string="Commission lines" colspan="4">
-                    <field name="lines" nolabel="1">
+                    <!-- <field name="lines" nolabel="1"> -->
                     <!-- <field name="model">sale.commission.teste</field> -->
                         <tree string="Settlement lines">
                             <field name="date_invoice"/>
