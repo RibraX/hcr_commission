@@ -230,7 +230,7 @@ class SettlementLine(models.Model):
 
 
 class ComissaoTeste(models.Model):
-    _name = "sale.commission.teste"
+    _name = "sale.commission.teste2"
     _description = "Sale Commission Analysis Report"
     _auto = False
     _rec_name = 'teste_commission_id'
