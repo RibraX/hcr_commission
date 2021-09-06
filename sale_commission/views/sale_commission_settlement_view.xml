@@ -107,8 +107,8 @@
                 <!-- <field name="date"/>
                 <field name="agent"/>
                 <field name="invoice"/>
-                <!-- <field name="invoice_line"/> -->
-                <!-- <field name="commission"/> -->
+                <field name="invoice_line"/>
+                <field name="commission"/> 
                 <field name="settled_amount" sum="Settled total"/> -->
             </tree>
         </field>
