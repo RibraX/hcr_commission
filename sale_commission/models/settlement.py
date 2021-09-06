@@ -277,7 +277,7 @@ class SettlementReport(models.Model):
              %s
         """ % (groupby)
 
-        return '%s (SELECT %s FROM %s WHERE l.product_id IS NOT NULL GROUP BY %s)' % (with_, select_, from_, groupby_)
+        return '%s (SELECT %s FROM %s  GROUP BY %s)' % (with_, select_, from_, groupby_)
 
     @api.model_cr
     def init(self):
