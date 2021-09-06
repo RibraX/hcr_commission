@@ -158,7 +158,6 @@ class Settlement(models.Model):
 class SettlementLine(models.Model):
     _name = "sale.commission.settlement.line"
     _description = "Line of a commission settlement"
-    _rec_name = "settlement_line"
 
     settlement = fields.Many2one(
         "sale.commission.settlement", readonly=True, ondelete="cascade",
@@ -262,7 +261,7 @@ class SettlementLine(models.Model):
 
     @api.model_cr
     def init(self):
-         self._table = settlement_line
+        self._table = settlement
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
