@@ -230,10 +230,10 @@ class SettlementLine(models.Model):
 
 
 class ComissaoTeste(models.Model):
-    _name = "sale.commission.teste2"
+    _name = "sale.commission.teste"
     _description = "Sale Commission Analysis Report"
     _auto = False
-    _rec_name = 'teste_commission_id'
+    _rec_name = 'a_commission_id'
 
 
     @api.model
@@ -244,8 +244,8 @@ class ComissaoTeste(models.Model):
     # invoice_state = fields.Selection(selection='_get_selection_invoice_state',
     #                                  string='Invoice Status', readonly=True)
     # so_origin = fields.Date('Date Invoice', readonly=True)
-    so_origin = fields.Many2one('account_invoice.origin', 'SO', readonly=True)
-    commission_total = fields.Many2one('account_invoice.commission_total', 'Comissão', readonly=True)
+    # so_origin = fields.Many2one('account_invoice.origin', 'SO', readonly=True)
+    # commission_total = fields.Many2one('account_invoice.commission_total', 'Comissão', readonly=True)
     # partner_id = fields.Many2one('res.partner', 'Partner', readonly=True)
     # agent_id = fields.Many2one('res.partner', 'Agent', readonly=True)
     # categ_id = fields.Many2one(
