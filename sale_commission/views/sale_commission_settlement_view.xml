@@ -75,7 +75,7 @@
                     <!-- <field name="lines" nolabel="1"> -->
                     <!-- <field name="model">sale.commission.teste</field> -->
                     <tree string="Settlement lines">
-                        <field name="origin"/>
+                        <field name="invoice_origin"/>
                         <!-- <field name="invoice"/> -->
                         <!-- <field name="origin"/> -->
                         <!-- <field name="invoice"/> -->

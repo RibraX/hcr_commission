@@ -272,7 +272,7 @@ class ComissaoTeste(models.Model):
         'sale.commission',
         'Sale commission',
         readonly=True)
-    origin = fields.Many2one('account_invoice.origin', 'SO Origin', readonly=True)
+    invoice_origin = fields.Many2one('account_invoice.origin', 'SO Origin', readonly=True)
     
 
     def _select(self):
