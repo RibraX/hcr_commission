@@ -71,7 +71,7 @@
                         <field name="agent_type" invisible="1"/>
                     </group>
                 </group> -->
-                <group string="Commission lines" colspan="4">
+                <group string="Commission lines" colspan="5">
                     <!-- <field name="lines" nolabel="1"> -->
                     <!-- <field name="model">sale.commission.teste</field> -->
                     <tree string="Settlement lines">

@@ -233,7 +233,7 @@ class ComissaoTeste(models.Model):
     _name = "sale.commission.teste"
     _description = "Sale Commission Analysis Report"
     _auto = False
-    _rec_name = 'commission_id'
+    #_rec_name = 'commission_id'
 
     
 
