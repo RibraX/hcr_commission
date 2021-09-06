@@ -80,8 +80,8 @@
                             <field name="invoice"/>
                             <field name="origin"/>
                             <field name="invoice"/>
-                            <field name="invoice_line"/>
-                            <field name="commission"/>
+                            <!-- <field name="invoice_line"/> -->
+                            <!-- <field name="commission"/> -->
                             <!-- <field name="settled_amount"/> -->
                             <field name="comm_total"/>
                         </tree>
