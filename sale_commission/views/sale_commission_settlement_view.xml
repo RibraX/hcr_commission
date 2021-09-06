@@ -102,8 +102,8 @@
         <!-- <field name="model">sale.commission.settlement.line</field> -->
         <field name="arch" type="xml">
             <tree string="Settlement lines" create="false" >
-                <field name="date_invoice"/>
-                <field name="invoice_line_id"/>
+                <field name="invoice_origin"/>
+                <field name="amount"/>
                 <!-- <field name="date"/>
                 <field name="agent"/>
                 <field name="invoice"/>
