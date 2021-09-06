@@ -73,7 +73,7 @@
                 </group> -->
                 <group string="Commission lines" colspan="4">
                     <!-- <field name="lines" nolabel="1"> -->
-                    <!-- <field name="model">sale.commission.teste</field> -->
+                    <field name="model">sale.commission.teste</field>
                         <tree string="Settlement lines">
                             <field name="date_invoice"/>
                             <field name="invoice_line_id"/>
@@ -85,7 +85,7 @@
                             <!-- <field name="comm_total"/> -->
                         </tree>
                     </field>
-                </group>
+                <!-- </group> -->
                 <!-- <group class="oe_subtotal_footer oe_right">
                     <field name="total"
                            class="oe_subtotal_footer_separator"
