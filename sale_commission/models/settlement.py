@@ -272,12 +272,16 @@ class ComissaoTeste(models.Model):
         'sale.commission',
         'Sale commission',
         readonly=True)
+    origin = fields.Char(
+        string="Origin", readonly=True,
+        related='account_invoice.origin') 
 
     def _select(self):
         select_str = """
             SELECT MIN(aila.id) AS id,
             ai.partner_id AS partner_id,
             ai.state AS invoice_state,
+            ai.origin AS invoice_origin,
             ai.date_invoice AS date_invoice,
             ail.company_id AS company_id,
             rp.id AS agent_id,
@@ -312,6 +316,7 @@ class ComissaoTeste(models.Model):
         group_by_str = """
             GROUP BY ai.partner_id,
             ai.state,
+            ai.origin,
             ai.date_invoice,
             ail.company_id,
             rp.id,
