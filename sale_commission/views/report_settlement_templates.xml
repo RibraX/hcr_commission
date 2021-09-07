@@ -44,7 +44,8 @@
                                     <td class="text-right"><span t-field="l.settled_amount"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
                                 </tr> -->
                                 <t t-set="pedido" t-value="''"/>
-                                <tr t-foreach="set(o.lines.mapped('lines'))" t-as="l">
+                                <!-- <tr t-foreach="set(o.lines.mapped('lines'))" t-as="l"> -->
+                                <tr t-foreach="o.lines" t-as="l">
                                     <t t-if="l.origin not in pedido">
                                         <td><span t-field="l.date"/></td>
                                         <td><span t-field="l.customer"/></td>
