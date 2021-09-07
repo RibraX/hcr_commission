@@ -42,7 +42,6 @@
                                     <td><span t-field="l.comm_total"/></td>
                                     <td class="text-right"><span t-field="l.settled_amount"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
                                 </tr> -->
-                                <h1>
                                 <t t-set="pedido" t-value="''"/>
                                 <!-- <tr t-foreach="set(o.lines.mapped('lines'))" t-as="l"> -->
                                 <tr t-foreach="o.lines" t-as="l">
@@ -56,7 +55,6 @@
                                     </t>
                                     <t t-set='pedido' t-value="pedido+','+l.origin"/>
                                 </tr>
-                                </h1>
                             </tbody>
                         </table>
                         <div class="row">
@@ -65,7 +63,7 @@
                                     <tr>
                                         <td><strong>Total</strong></td>
                                         <td class="text-right">
-                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                            <span t-field="o.commission_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
                                         </td>
                                     </tr>
                                 </table>
