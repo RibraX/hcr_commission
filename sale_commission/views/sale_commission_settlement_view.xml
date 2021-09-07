@@ -43,7 +43,6 @@
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
         <field name="model">sale.commission.settlement</field>
-        <!-- <field name="context">{'group_by':['origin', 'comm_total', 'date', 'invoice']}</field> -->
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
                 <header>
@@ -73,12 +72,13 @@
                 </group>
                 <group string="Commission lines" colspan="4">
                     <field name="lines" nolabel="1">
+                    <!-- <field name="model">sale.commission.settlement.report</field> -->
                         <tree string="Settlement lines">
-                            <!-- <field name="date"/> -->
-                            <!-- <field name="customer"/> -->
+                            <field name="date"/>
+                            <field name="customer"/>
                             <field name="origin"/>
                             <!-- <field name="invoice"/> -->
-                            <!-- <field name="invoice_line" invisible="1"/> -->
+                            <!-- <field name="invoice_line"/> -->
                             <!-- <field name="commission"/> -->
                             <!-- <field name="settled_amount"/> -->
                             <field name="comm_total"/>
@@ -104,7 +104,7 @@
                 <field name="agent"/>
                 <field name="invoice"/>
                 <field name="invoice_line"/>
-                <field name="commission"/>
+                <!-- <field name="commission"/> -->
                 <field name="settled_amount" sum="Settled total"/>
             </tree>
         </field>
@@ -146,8 +146,8 @@
         <field name="name">Settlements</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.commission.settlement</field>
-        <field name="view_type">tree</field>
-        <field name="view_mode">tree</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem name="Settlements"
