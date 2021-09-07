@@ -20,7 +20,7 @@
                             </div>
                         </div>
 
-                        <table class="table table-condensed">
+                        <table class="table table-condensed col-auto mw-75">
                             <thead>
                                 <tr>
                                     <th>Invoice date</th>
@@ -31,7 +31,7 @@
                                     <th class="text-right">Amount settled</th>
                                 </tr>
                             </thead>
-                            <tbody style=" font-size: 1.6em; line-height:18px;">
+                            <tbody style=" font-size: 0.7em;">
                                 <!-- <tr t-foreach="o.lines" t-as="l">
                                     <tr t-foreach="l.origin"
                                     <td><span t-field="l.date"/></td>
