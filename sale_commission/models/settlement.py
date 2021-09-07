@@ -229,6 +229,8 @@ class SettlementLine(models.Model):
                     raise UserError(_("Company must be the same"))
 
 
+
+
 class SettlementReport(models.Model):
     _name = "sale.commission.settlement.report"
     _description = "Sales Commission Settlement Report"

@@ -73,12 +73,12 @@
                 <group string="Commission lines" colspan="4">
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
-                            <field name="date"/>
+                            <!-- <field name="date"/> -->
                             <!-- <field name="customer"/> -->
                             <field name="origin"/>
-                            <field name="invoice"/>
+                            <!-- <field name="invoice"/> -->
                             <!-- <field name="invoice_line"/> -->
-                            <field name="commission"/>
+                            <!-- <field name="commission"/> -->
                             <!-- <field name="settled_amount"/> -->
                             <field name="comm_total"/>
                         </tree>
