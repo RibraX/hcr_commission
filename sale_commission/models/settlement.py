@@ -21,12 +21,11 @@ class Settlement(models.Model):
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     # lines = fields.One2many(
-
-    teste = self.env['sale.commission.settlement.line'].read_group([ ("invoice", "=", self.invoice) ], fields=['comm_total','origin'], groupby=['comm_total','origin'])
-
+        
     lines = fields.One2many(
         comodel_name="sale.commission.settlement.line",
         inverse_name="settlement", string="Settlement lines", readonly=True)
+    
     state = fields.Selection(
         selection=[("settled", "Settled"),
                    ("invoiced", "Invoiced"),
