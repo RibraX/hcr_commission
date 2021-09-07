@@ -33,7 +33,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.lines" t-as="l">
+                                <!-- <tr t-foreach="o.lines" t-as="l">
+                                    <tr t-foreach="l.origin"
                                     <td><span t-field="l.date"/></td>
                                     <td><span t-field="l.customer"/></td>
                                     <td><span t-field="l.origin"/></td>
@@ -41,6 +42,18 @@
                                     <td><span t-field="l.commission"/></td>
                                     <td><span t-field="l.comm_total"/></td>
                                     <td class="text-right"><span t-field="l.settled_amount"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
+                                </tr> -->
+                                <t t-set="pedido" t-value="''"/>
+                                <tr t-foreach="set(o.lines.mapped('origin'))" t-as="l">
+                                    <t t-if="l.origin not in pedido">
+                                        <td><span t-field="l.date"/></td>
+                                        <td><span t-field="l.customer"/></td>
+                                        <td><span t-field="l.origin"/></td>
+                                        <td><span t-field="l.invoice"/></td>
+                                        <td><span t-field="l.commission"/></td>
+                                        <td><span t-field="l.comm_total"/></td>
+                                        <td class="text-right"><span t-field="l.settled_amount"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
+                                    </t>
                                 </tr>
                             </tbody>
                         </table>
