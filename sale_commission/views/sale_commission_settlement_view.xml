@@ -43,6 +43,7 @@
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
         <field name="model">sale.commission.settlement</field>
+        <field name="context">{'group_by':['origin']}</field>
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
                 <header>
