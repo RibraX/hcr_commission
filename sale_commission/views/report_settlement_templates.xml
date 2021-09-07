@@ -52,8 +52,7 @@
                                         <td><span t-field="l.origin"/></td>
                                         <td><span t-field="l.invoice"/></td>
                                         <td><span t-field="l.commission"/></td>
-                                        <td><span t-field="l.comm_total"/></td>
-                                        <td class="text-right"><span t-field="l.settled_amount"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
+                                        <td class="text-right"><span t-field="l.comm_total"  t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/></td>
                                     </t>
                                     <t t-set='pedido' t-value="pedido+','+l.origin"/>
                                 </tr>
