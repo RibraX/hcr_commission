@@ -74,7 +74,7 @@
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
                             <field name="date"/>
-                            <field name="customer"/>
+                            <!-- <field name="customer"/> -->
                             <field name="origin"/>
                             <field name="invoice"/>
                             <!-- <field name="invoice_line"/> -->
