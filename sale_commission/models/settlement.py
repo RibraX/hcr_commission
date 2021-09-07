@@ -228,8 +228,26 @@ class SettlementLine(models.Model):
                 if line.company_id != record.company_id:
                     raise UserError(_("Company must be the same"))
 
-#########################
 
+class SettlementReport(models.Model):
+    _name = "sale.commission.settlement.report"
+    _description = "Sales Commission Settlement Report"
+    _auto = False
+    # _rec_name = 'date'
+    _order = 'origin'
+
+    # @api.model
+    # def _get_done_states(self):
+    #     return ['sale', 'done', 'paid']
+
+
+    id = fields.Integer('ID Referencia', readonly=True)
+    settlement = fields.Integer('Fechamento', readonly=True)
+    agent = fields.Integer('Representante', readonly=True)
+    origin = fields.Char('Pedido', readonly=True)
+    # customer = fields.Char('Cliente', readonly=True)
+    comm_total = fields.Float('Comissão', readonly=True)
+            
     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
         with_ = ("WITH %s" % with_clause) if with_clause else ""
 
@@ -261,68 +279,9 @@ class SettlementLine(models.Model):
 
     @api.model_cr
     def init(self):
-        # self._table = settlement
-        """settlement_view"""
+        # self._table = sale_report
         tools.drop_view_if_exists(self.env.cr, self._table)
         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
-
-
-
-
-# class SettlementReport(models.Model):
-#     # _inherit = "sale.commission.settlement.line"
-#     _name = "sale.commission.settlement.report"
-#     _description = "Sales Commission Settlement Report"
-#     _auto = False
-#     # _rec_name = 'date'
-#     _order = 'origin'
-
-#     @api.model
-#     def _get_done_states(self):
-#         return ['sale', 'done', 'paid']
-
-
-#     id = fields.Integer('ID Referencia', readonly=True)
-#     settlement = fields.Integer('Fechamento', readonly=True)
-#     agent = fields.Integer('Representante', readonly=True)
-#     origin = fields.Char('Pedido', readonly=True)
-#     # customer = fields.Char('Cliente', readonly=True)
-#     comm_total = fields.Float('Comissão', readonly=True)
-            
-#     def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-#         with_ = ("WITH %s" % with_clause) if with_clause else ""
-
-#         select_ = """
-#             settlement as id,
-#             settlement,
-#             agent,
-#             origin,
-#             comm_total
-#         """
-
-#         for field in fields.values():
-#             select_ += field
-
-#         from_ = """
-#                 sale_commission_settlement_line
-#                 %s
-#         """ % from_clause
-
-#         groupby_ = """
-#             settlement,
-#             agent,
-#             origin,
-#             comm_total
-#              %s
-#         """ % (groupby)
-
-#         return '%s (SELECT %s FROM %s  GROUP BY %s)' % (with_, select_, from_, groupby_)
-
-#     @api.model_cr
-#     def init(self):
-#         # self._table = sale_report
-#         tools.drop_view_if_exists(self.env.cr, self._table)
-#         self.env.cr.execute("""CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query()))
 
 # class ComissaoTeste(models.Model):
 #     _inherit = "sale.commission.settlement.line"
