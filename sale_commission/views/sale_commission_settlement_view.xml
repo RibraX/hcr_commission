@@ -42,11 +42,10 @@
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
-        <!-- <field name="model">sale.commission.settlement.report</field> -->
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
-                <!-- <header>
+                <header>
                     <button string="Make invoice"
                             attrs="{'invisible': ['|', ('state', '!=', 'settled'), ('agent_type', '!=', 'agent')]}"
                             class="oe_highlight"
@@ -57,8 +56,8 @@
                             type="object"
                             name="action_cancel" />
                     <field name="state" widget="statusbar"/>
-                </header> -->
-                <!-- <group>
+                </header>
+                <group>
                     <group>
                         <field name="agent"/>
                         <field name="date_from"/>
@@ -70,48 +69,42 @@
                         <field name="currency_id" invisible="1"/>
                         <field name="agent_type" invisible="1"/>
                     </group>
-                </group> -->
-                <group string="Commission lines" colspan="5">
-                    <!-- <field name="lines" nolabel="1"> -->
-                    <!-- <field name="model">sale.commission.settlement.report</field> -->
-                    <tree string="Comissão XXX">
-                        <!-- <field name="invoice_origin"/>
-                        <field name="amount"/> -->
-                        <!-- <field name="invoice"/> -->
-                        <field name="origin" context="{'group_by':'origin'}"/>
-                        <!-- <field name="invoice"/> -->
-                        <!-- <field name="invoice_line"/> -->
-                        <!-- <field name="commission"/> -->
-                        <!-- <field name="settled_amount"/> -->
-                        <field name="comm_total" context="{'group_by':'origin'}"/>
-                    </tree>
-                    <!-- </field> -->
                 </group>
-                <!-- <group class="oe_subtotal_footer oe_right">
+                <group string="Commission lines" colspan="4">
+                    <field name="lines" nolabel="1">
+                        <tree string="Settlement lines">
+                            <field name="date"/>
+                            <field name="customer"/>
+                            <field name="origin"/>
+                            <field name="invoice"/>
+                            <!-- <field name="invoice_line"/> -->
+                            <field name="commission"/>
+                            <field name="settled_amount"/>
+                            <field name="comm_total"/>
+                        </tree>
+                    </field>
+                </group>
+                <group class="oe_subtotal_footer oe_right">
                     <field name="total"
                            class="oe_subtotal_footer_separator"
                            widget="monetary"
                            options="{'currency_field': 'currency_id'}"/>
-                </group> -->
+                </group>
             </form>
         </field>
     </record>
 
     <record model="ir.ui.view" id="view_settlement_line_tree">
-        <field name="name">Comissao lines</field>
-        <field name="model">sale.commission.settlement</field>
+        <field name="name">Settlement lines</field>
+        <field name="model">sale.commission.settlement.line</field>
         <field name="arch" type="xml">
-            <tree string="Comissão XYZ" create="false" >
-                <!-- <field name="invoice_origin"/> -->
-                <!-- <field name="amount"/> -->
-                <!-- <field name="date"/>
+            <tree string="Settlement lines" create="false" >
+                <field name="date"/>
                 <field name="agent"/>
                 <field name="invoice"/>
-                <field name="invoice_line"/> -->
-                <!-- <field name="commission"/>  -->
-                <field name="agent" />
-                <field name="origin" />
-                <field name="comm_total" sum="Settled total"/>
+                <field name="invoice_line"/>
+                <field name="commission"/>
+                <field name="settled_amount" sum="Settled total"/>
             </tree>
         </field>
     </record>
