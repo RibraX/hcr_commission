@@ -31,7 +31,7 @@
                                     <th class="text-right">Amount settled</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style=" font-size: 1.6em; line-height:18px;">
                                 <!-- <tr t-foreach="o.lines" t-as="l">
                                     <tr t-foreach="l.origin"
                                     <td><span t-field="l.date"/></td>
