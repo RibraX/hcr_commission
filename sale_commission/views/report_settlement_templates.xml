@@ -17,6 +17,9 @@
                             <div class="col-auto mw-100 mb-2" t-if="o.date_to">
                                 <strong>Até:</strong>
                                 <p t-field="o.date_to"/>
+                                <td class="text-right">
+                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                </td>
                             </div>
                         </div>
                         <div class="row">
