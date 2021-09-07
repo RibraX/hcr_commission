@@ -28,7 +28,6 @@
                                     <th>Pedido</th>
                                     <th>Invoice</th>
                                     <th>% Comissão</th>
-                                    <th>Com.Integral</th>
                                     <th class="text-right">Amount settled</th>
                                 </tr>
                             </thead>
