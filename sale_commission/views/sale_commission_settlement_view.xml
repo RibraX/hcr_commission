@@ -42,8 +42,8 @@
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
-        <field name="model">sale.commission.settlement.report</field>
-        <!-- <field name="model">sale.commission.settlement</field> -->
+        <!-- <field name="model">sale.commission.settlement.report</field> -->
+        <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
                 <!-- <header>
@@ -78,12 +78,12 @@
                         <!-- <field name="invoice_origin"/>
                         <field name="amount"/> -->
                         <!-- <field name="invoice"/> -->
-                        <field name="origin"/>
+                        <field name="origin" context="{'group_by':'origin'}"/>
                         <!-- <field name="invoice"/> -->
                         <!-- <field name="invoice_line"/> -->
                         <!-- <field name="commission"/> -->
                         <!-- <field name="settled_amount"/> -->
-                        <field name="comm_total"/>
+                        <field name="comm_total" context="{'group_by':'origin'}"/>
                     </tree>
                     <!-- </field> -->
                 </group>

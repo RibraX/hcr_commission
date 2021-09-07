@@ -236,9 +236,9 @@ class SettlementReport(models.Model):
     # _rec_name = 'date'
     _order = 'origin'
 
-    # @api.model
-    # def _get_done_states(self):
-    #     return ['sale', 'done', 'paid']
+    @api.model
+    def _get_done_states(self):
+        return ['sale', 'done', 'paid']
 
 
     id = fields.Integer('ID Referencia', readonly=True)
