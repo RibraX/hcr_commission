@@ -17,23 +17,9 @@
                             <div class="col-auto mw-100 mb-2" t-if="o.date_to">
                                 <strong>Até:</strong>
                                 <p t-field="o.date_to"/>
-                                <td class="text-right">
-                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
-                                </td>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-4 pull-right">
-                                <table class="table table-condensed">
-                                    <tr>
-                                        <td><strong>Total</strong></td>
-                                        <td class="text-right">
-                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
+
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
@@ -71,7 +57,18 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+                        <div class="row mt32 mb32">
+                            <!-- <div class=""row mt32 mb32""> -->
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Total</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="o.total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            <!-- </div> -->
+                        </div>                        
 
                     </div>
                 </t>
