@@ -5,7 +5,7 @@
         <field name="model">sale.commission.settlement</field>
         <field name="arch" type="xml">
             <tree string="Settlements"
-                    decoration-danger="state == 'cancel'" decoration-success="state == 'settled'"
+                    decoration-warning="state == 'cancel'" decoration-danger="state == 'settled'"
                     decoration-info="state == 'invoiced'"
                     create="false">
                 <field name="agent"/>
