@@ -75,12 +75,12 @@
                         <tree string="Settlement lines">
                             <field name="date"/>
                             <!-- <field name="customer"/> -->
-                            <field name="origin"/>
-                            <field name="invoice"/>
+                            <field name="origin" context="{'group_by': 'origin'}"/>
+                            <field name="invoice" context="{'group_by': 'origin'}"/>
                             <!-- <field name="invoice_line"/> -->
-                            <field name="commission"/>
+                            <field name="commission" context="{'group_by': 'origin'}"/>
                             <!-- <field name="settled_amount"/> -->
-                            <field name="comm_total"/>
+                            <field name="comm_total" context="{'group_by': 'origin'}"/>
                         </tree>
                     </field>
                 </group>
