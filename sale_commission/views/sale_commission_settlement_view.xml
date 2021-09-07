@@ -73,14 +73,14 @@
                 <group string="Commission lines" colspan="4">
                     <field name="lines" nolabel="1">
                         <tree string="Settlement lines">
-                            <field name="date"/>
+                            <!-- <field name="date"/> -->
                             <!-- <field name="customer"/> -->
-                            <field name="origin" context="{'group_by': 'origin'}"/>
-                            <field name="invoice" context="{'group_by': 'origin'}"/>
+                            <field string="Pedido" name="group_origin" context="{'group_by': 'origin'}"/>
+                            <!-- <field name="invoice" context="{'group_by': 'origin'}"/> -->
                             <!-- <field name="invoice_line"/> -->
-                            <field name="commission" context="{'group_by': 'origin'}"/>
+                            <!-- <field name="commission" context="{'group_by': 'origin'}"/> -->
                             <!-- <field name="settled_amount"/> -->
-                            <field name="comm_total" context="{'group_by': 'origin'}"/>
+                            <field string="Comissão" name="group_comm_total" context="{'group_by': 'origin'}"/>
                         </tree>
                     </field>
                 </group>
