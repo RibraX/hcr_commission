@@ -21,10 +21,9 @@ class Settlement(models.Model):
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     # lines = fields.One2many(
-        
-    group_lines = fields.Many2One(
-        comodel_name="sale.commission.settlement.line",
-        inverse_name="settlement", string="Settlement lines", readonly=True)
+
+    teste = self.env['sale.commission.settlement.line'].read_group([ ("invoice", "=", self.invoice) ], fields=['comm_total','origin'], groupby=['comm_total','origin'])
+
     lines = fields.One2many(
         comodel_name="sale.commission.settlement.line",
         inverse_name="settlement", string="Settlement lines", readonly=True)
@@ -185,10 +184,10 @@ class SettlementLine(models.Model):
         string="Customer", store=True,
         related='invoice_line.partner_id.name'
     )     
-    customer = fields.Char(
-        string="Customer", default = "teste"
-    )     
-    customer = "customer"
+    # customer = fields.Char(
+    #     string="Customer", default = "teste"
+    # )     
+    # customer = "customer"
     agent = fields.Many2one(
         comodel_name="res.partner", readonly=True, related="agent_line.agent",
         store=True)
