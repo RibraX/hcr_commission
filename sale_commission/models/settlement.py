@@ -21,6 +21,10 @@ class Settlement(models.Model):
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     # lines = fields.One2many(
+        
+    group_lines = fields.Many2One(
+        comodel_name="sale.commission.settlement.line",
+        inverse_name="settlement", string="Settlement lines", readonly=True)
     lines = fields.One2many(
         comodel_name="sale.commission.settlement.line",
         inverse_name="settlement", string="Settlement lines", readonly=True)

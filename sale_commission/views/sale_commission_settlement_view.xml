@@ -42,8 +42,8 @@
 
     <record model="ir.ui.view" id="view_settlement_form">
         <field name="name">Settlements</field>
-        <field name="model">sale.commission.settlement.line</field>
-        <field name="context">{'group_by':['origin', 'comm_total', 'date', 'invoice']}</field>
+        <field name="model">sale.commission.settlement</field>
+        <!-- <field name="context">{'group_by':['origin', 'comm_total', 'date', 'invoice']}</field> -->
         <field name="arch" type="xml">
             <form string="Settlement" create="false">
                 <header>
