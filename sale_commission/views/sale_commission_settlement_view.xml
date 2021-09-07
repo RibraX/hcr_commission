@@ -78,7 +78,7 @@
                             <!-- <field name="customer"/> -->
                             <field name="origin"/>
                             <!-- <field name="invoice"/> -->
-                            <field name="invoice_line" invisible="1"/>
+                            <!-- <field name="invoice_line" invisible="1"/> -->
                             <!-- <field name="commission"/> -->
                             <!-- <field name="settled_amount"/> -->
                             <field name="comm_total"/>
