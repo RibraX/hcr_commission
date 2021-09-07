@@ -72,7 +72,7 @@
                     </group>
                 </group> -->
                 <group string="Commission lines" colspan="5">
-                    <field name="lines" nolabel="1">
+                    <!-- <field name="lines" nolabel="1"> -->
                     <!-- <field name="model">sale.commission.settlement.report</field> -->
                     <tree string="Comissão XXX">
                         <!-- <field name="invoice_origin"/>
@@ -85,7 +85,7 @@
                         <!-- <field name="settled_amount"/> -->
                         <field name="comm_total"/>
                     </tree>
-                    </field>
+                    <!-- </field> -->
                 </group>
                 <!-- <group class="oe_subtotal_footer oe_right">
                     <field name="total"
