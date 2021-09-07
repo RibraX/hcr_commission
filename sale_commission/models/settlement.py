@@ -21,7 +21,7 @@ class Settlement(models.Model):
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
     # lines = fields.One2many(
-        
+
     lines = fields.One2many(
         comodel_name="sale.commission.settlement.line",
         inverse_name="settlement", string="Settlement lines", readonly=True)
@@ -212,11 +212,12 @@ class SettlementLine(models.Model):
             for line in record.agent_line:
                 record.commission_total += sum(x.amount for x in line)
 
-    # commission_total = fields.Float(
-    #     string="Commissions",
-    #     compute="_compute_commission_total",
-    #     store=True,
-    #     )            
+    commission_total = fields.Float(
+        string="Commissions",
+        compute="_compute_commission_total",
+        store=True,
+        )            
+        
     comm_total = fields.Float(
         comodel_name='invoice_vals.commission_total',
         string="Comissão Total", store=True,
