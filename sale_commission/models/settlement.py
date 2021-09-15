@@ -20,7 +20,6 @@ class Settlement(models.Model):
     agent = fields.Many2one(
         comodel_name="res.partner", domain="[('agent', '=', True)]")
     agent_type = fields.Selection(related='agent.agent_type')
-    # lines = fields.One2many(
 
     lines = fields.One2many(
         comodel_name="sale.commission.settlement.line",

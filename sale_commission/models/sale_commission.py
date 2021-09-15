@@ -18,7 +18,7 @@ class SaleCommission(models.Model):
     invoice_state = fields.Selection(
         [('open', 'Invoice Based'),
          ('paid', 'Payment Based'),
-         ('parcial', 'Pagamento Parcial')], string='Invoice Status',
+         ('parcial', 'Duplicata Paga')], string='Invoice Status',
         required=True, default='open')
     amount_base_type = fields.Selection(
         selection=[('gross_amount', 'Gross Amount'),
@@ -34,6 +34,14 @@ class SaleCommission(models.Model):
             if section.amount_from <= base <= section.amount_to:
                 return base * section.percent / 100.0
         return 0.0
+
+    #  @api.multi
+    # def calculate_parcial(self, base):
+    #     self.ensure_one()
+    #     for section in self.sections:
+    #         if section.amount_from <= base <= section.amount_to:
+    #             return base * section.percent / 100.0
+    #     return 0.0
 
 
 class SaleCommissionSection(models.Model):
